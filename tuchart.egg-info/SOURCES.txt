@@ -1,0 +1,11 @@
+setup.py
+Tuchart/Graph.py
+Tuchart/__init__.py
+Tuchart/__version__.py
+Tuchart/layout.py
+Tuchart/main.py
+tuchart.egg-info/PKG-INFO
+tuchart.egg-info/SOURCES.txt
+tuchart.egg-info/dependency_links.txt
+tuchart.egg-info/requires.txt
+tuchart.egg-info/top_level.txt

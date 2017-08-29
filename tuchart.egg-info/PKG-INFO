@@ -1,0 +1,57 @@
+Metadata-Version: 1.1
+Name: tuchart
+Version: 0.1
+Summary: Graphing app for Chinese stocks. 
+Home-page: https://github.com/Seedarchangel/TuChart
+Author: Rong Zhou Li
+Author-email: rzli2@illinois.com
+License: ISC
+Description: 
+        TuChart
+        =================
+        TuChart是一个基于Echarts和Tushare的中国股票可视化应用。
+        ## 使用截图
+        #### 个股K线
+        ![notebook-0](https://github.com/Seedarchangel/TuChart/blob/master/Example_Graphs/Screen%20Shot%202017-08-29%20at%202.11.43%20AM.png)
+        #### 个股分笔
+        ![notebook-0](https://github.com/Seedarchangel/TuChart/blob/master/Example_Graphs/Screen%20Shot%202017-08-29%20at%202.12.53%20AM.png)
+        #### 多图并列
+        ![notebook-0](https://github.com/Seedarchangel/TuChart/blob/master/Example_Graphs/Screen%20Shot%202017-08-28%20at%209.01.12%20PM.png)
+        
+        
+        ## 数据类型
+        Tuchart目前支持的数据类型有：
+        1. *未复权日线
+          周线
+          月线
+          15分钟线
+          30分钟线*
+        2. *前／后复权日线，周线，月线，5分钟线，15分钟线,30分钟线*
+        3. *个股分笔交易数据*
+        
+        ## 依赖
+        请安装anaconda 2.7,并另外安装
+        
+        1. pyecharts
+        2. tushare
+        
+        使用```pip install pyecharts, tushare```即可安装
+        
+        ## 使用方法
+        ```python main.py```
+        In Development
+        
+        
+        
+Platform: UNKNOWN
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Programming Language :: Python
+Classifier: Programming Language :: Python :: 2.6
+Classifier: Programming Language :: Python :: 2.7
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.3
+Classifier: Programming Language :: Python :: 3.4
+Classifier: Programming Language :: Python :: 3.5
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Programming Language :: Python :: Implementation :: CPython
+Classifier: Programming Language :: Python :: Implementation :: PyPy
