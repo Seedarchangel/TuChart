@@ -49,7 +49,7 @@ class MyUi(QMainWindow):
             with open("time", "w+") as outfile:
                 cPickle.dump(now,outfile)
 
-        series = pd.read_json(cwd + "\\class.json")
+        series = pd.read_json(cwd + "/class.json")
         series = pd.DataFrame(series)
         curdate = time.strftime("%Y/%m/%d") #gets current time to put into dateedit
         dateobj = datetime.strptime(curdate, "%Y/%m/%d")#converts to datetime object
