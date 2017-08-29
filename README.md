@@ -1,6 +1,6 @@
 TuChart
 =================
-TuChart是一个基于Echarts和Tushare的中国股票可视化应用。
+TuChart是一个基于Echarts，tushare和qtpy的中国股票可视化应用。
 ## 使用截图
 #### 个股K线
 ![notebook-0](https://github.com/Seedarchangel/TuChart/blob/master/Example_Graphs/Screen%20Shot%202017-08-29%20at%203.30.19%20PM.png?raw=true)
