@@ -28,6 +28,8 @@ Tuchart目前支持的数据类型有：
 
 使用```pip install pyecharts, tushare```即可安装
 
-
+##使用方法
+```python main.py```
+In Development
 
 
