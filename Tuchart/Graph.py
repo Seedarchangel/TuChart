@@ -22,6 +22,8 @@ def graphpage(items,startdate,enddate,option,width1, height1):
         j = re.split("-",i)
         if len(j)==3:
             a = generateline(j[1],j[2],startdate,enddate,option)#stock number, Type, startdate, enddate, 30 or 15 or days
+            if a is None:
+                continue
             time = [d[0] for d in a]#get time from returned dictionary
             if j[2]!="Kline":
                 if len(a[0])==4 and a[0][2]=="bar": #for 分笔data
@@ -75,6 +77,8 @@ def graphpage(items,startdate,enddate,option,width1, height1):
             for i in xrange(0, len(j),3):
                 array = j[i:i +3]
                 b = generateline(array[1],array[2],startdate,enddate,option)
+                if b is None:
+                    continue
                 btime = [d[0] for d in b]
                 if array[2] != "Kline":
 
@@ -134,6 +138,8 @@ def generateline(stocknumber,Type,startdate,enddate,interval):
     if Type ==  "分笔".decode("utf-8"):
         if startdate!=current_time:
             array = ts.get_tick_data(stocknumber, date = startdata)#分笔
+            if array is None:
+                return
             array = array.sort_values("time")
             date = array["time"].tolist()
             amount = array["amount"].tolist()
@@ -149,6 +155,8 @@ def generateline(stocknumber,Type,startdate,enddate,interval):
             return returnarray
         else:
             array = ts.get_today_ticks(stocknumber)#Tushare里今日分笔和历史分笔需要分别对待
+            if array is None:
+                return
             array = array.sort_values("time")
             date = array["time"].tolist()
             amount = array["amount"].tolist()
@@ -167,6 +175,8 @@ def generateline(stocknumber,Type,startdate,enddate,interval):
     if interval!="qfq" and interval!="hfq": #正常历史k线
         if Type!="Kline":
             array = ts.get_k_data(stocknumber, start=startdata, end=enddata, ktype=interval)
+            if array is None:
+                return
             Type1 = firstletter(Type).encode("ascii")
             target = array[Type1].tolist()
             date = array["date"].tolist()
@@ -174,6 +184,8 @@ def generateline(stocknumber,Type,startdate,enddate,interval):
             return returnarray
         else:
             array = ts.get_k_data(stocknumber, start=startdata, end=enddata, ktype=interval)
+            if array is None:
+                return
             Date = array["date"].tolist()
             Open = array["open"].tolist()
             Close = array["close"].tolist()
@@ -184,6 +196,8 @@ def generateline(stocknumber,Type,startdate,enddate,interval):
     else:
         if Type!="Kline": # 复权
             array = ts.get_h_data(stocknumber, start = startdata, end = enddata, autype= interval)
+            if array is None:
+                return
             Type1 = firstletter(Type).encode("ascii")
             array = array.sort_index()
             target = array[Type1].tolist()
@@ -192,6 +206,8 @@ def generateline(stocknumber,Type,startdate,enddate,interval):
             return returnarray
         else :
             array = ts.get_h_data(stocknumber, start=startdata, end=enddata, autype=interval)
+            if array is None:
+                return
             array = array.sort_index()
             Date = array.index.format()
             Open = array["open"].tolist()
