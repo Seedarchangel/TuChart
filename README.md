@@ -18,6 +18,10 @@ TuChart是一个基于Echarts和qtpy的股票绘图应用
 
 运行```python tuchart```
 
+在左侧的菜单右键想要进行绘制的股票，选择数据类型，之后点击绿色箭头即可绘制。不建议同时绘制超过5张以上。
+
+![Manual](https://github.com/Seedarchangel/TuChart/blob/master/Example_Graphs/SLYJiZEBeD.gif)
+
 
 ## 依赖
 请安装anaconda 2.7,并另外安装
