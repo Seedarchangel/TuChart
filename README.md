@@ -14,7 +14,7 @@ TuChart是一个基于Echarts和Tushare的股票视觉化应用
 ## 使用方法
 ```pip install tuchart```
 
-之后在此directory
+之后在此directory（不同操作系统或有不同）
 
 ```/user/anaconda/lib/python2.7/site-packages/tuchart```
 
@@ -58,7 +58,7 @@ Tuchart目前支持的数据类型有：
 * 股票行业列表缓存，避免每次开启程序时的加载
 ## 联系作者
 * 邮箱：rzli2@illinois.edu
-* 微信seedarchangel
+* 微信：seedarchangel
 
 
 
