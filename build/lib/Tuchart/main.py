@@ -20,36 +20,38 @@ class MyUi(QMainWindow):
         super(MyUi, self).__init__()
         self.ui = Ui_MainWindow()
         self.ui.setupUi(self)
-        cwd = os.getcwd()
-        cwd = str(cwd)
-        if os.path.isfile(cwd+"/time"):
-            with open("time","r") as outfile:#reads current time
-                history = cPickle.load(outfile)
-            if (datetime.now()-history).total_seconds()<43200: #measures if time elapse>12 hours
-                print "Less than 12 hours. Loading previously saved Json..."
-                with open("time","w") as infile: #update time
-                    cPickle.dump(datetime.now(),infile)
+        #cwd = os.getcwd()
+        #cwd = str(cwd)
+        #if os.path.isfile(cwd+"/time"):
+         #   with open("time","r") as outfile:#reads current time
+          #      history = cPickle.load(outfile)
+           # if (datetime.now()-history).total_seconds()<43200: #measures if time elapse>12 hours
+            #    print "Less than 12 hours. Loading previously saved Json..."
+             #   with open("time","w") as infile: #update time
+              #      cPickle.dump(datetime.now(),infile)
 
-            else:
-                print "More than 12 hours. Updating Json..."
-                data = ts.get_industry_classified()
-                data.to_json(cwd + "/class.json", orient="columns")#writes class data so no need to call Tushare agian
-                now = datetime.now()
-                with open("time", "w+") as outfile: #update time
-                    cPickle.dump(now, outfile)
+            #else:
+             #   print "More than 12 hours. Updating Json..."
+              #  data = ts.get_industry_classified()
+               # data.to_json(cwd + "/class.json", orient="columns")#writes class data so no need to call Tushare agian
+                #now = datetime.now()
+                #with open("time", "w+") as outfile: #update time
+                 #   cPickle.dump(now, outfile)
 
-        else:
-            print "No json found!"#If this is first time using tuchart in this directory
-            data = df()
-            data = ts.get_industry_classified()
-            var = data.to_json(cwd+"/class.json",orient="columns")
-            with open('class.json', 'w+') as outfile: #records json
-                json.dump(var, outfile)
-            now = datetime.now()
-            with open("time", "w+") as outfile:
-                cPickle.dump(now,outfile)
+       # else:
+        #    print "No json found!"#If this is first time using tuchart in this directory
+         #   data = df()
+          #  data = ts.get_industry_classified()
+           # print data
+           # var = data.to_json(cwd+"/class.json",orient="columns")
+           # with open('class.json', 'w+') as outfile: #records json
+          #      json.dump(var, outfile)
+          #  now = datetime.now()
+           # with open("time", "w+") as outfile:
+           #     cPickle.dump(now,outfile)
 
-        series = pd.read_json(cwd + "/class.json")
+     #   series = pd.read_json(cwd + "\\class.json")
+        series = ts.get_industry_classified()
         series = pd.DataFrame(series)
         curdate = time.strftime("%Y/%m/%d") #gets current time to put into dateedit
         dateobj = datetime.strptime(curdate, "%Y/%m/%d")#converts to datetime object

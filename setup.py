@@ -32,8 +32,8 @@ here = os.path.abspath(os.path.dirname(__file__))
 
 # Import the README and use it as the long-description.
 # Note: this will only work if 'README.rst' is present in your MANFEST.in file!
-with codecs.open(os.path.join(here, 'README.MD'), encoding='utf-8') as f:
-    long_description = '\n' + f.read()
+#with codecs.open(os.path.join(here, 'README.MD'), encoding='utf-8') as f:
+    #long_description = '\n' + f.read()
 
 # Load the package's __version__.py module as a dictionary.
 about = {}
@@ -78,7 +78,7 @@ setup(
     name=NAME,
     version=about['__version__'],
     description=DESCRIPTION,
-    long_description=long_description,
+    #long_description=long_description,
     author=AUTHOR,
     author_email=EMAIL,
     url=URL,
@@ -91,7 +91,6 @@ setup(
     # },
     install_requires=REQUIRED,
     include_package_data=True,
-    data_files=[('Tuchart/class.json', ['Tuchart/time'])],
     license='MIT',
     classifiers=[
         # Trove classifiers
@@ -100,11 +99,6 @@ setup(
         'Programming Language :: Python',
         'Programming Language :: Python :: 2.6',
         'Programming Language :: Python :: 2.7',
-        'Programming Language :: Python :: 3',
-        'Programming Language :: Python :: 3.3',
-        'Programming Language :: Python :: 3.4',
-        'Programming Language :: Python :: 3.5',
-        'Programming Language :: Python :: 3.6',
         'Programming Language :: Python :: Implementation :: CPython',
         'Programming Language :: Python :: Implementation :: PyPy'
     ],
