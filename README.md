@@ -1,6 +1,6 @@
 TuChart
 =================
-TuChart是一个基于Echarts和qtpy的股票绘图应用
+TuChart是一个基于Echarts和Tushare的股票视觉化应用
 ## 使用截图
 #### 个股K线
 ![notebook-0](https://github.com/Seedarchangel/TuChart/blob/master/Example_Graphs/Screen%20Shot%202017-08-29%20at%203.30.19%20PM.png?raw=true)
@@ -8,11 +8,13 @@ TuChart是一个基于Echarts和qtpy的股票绘图应用
 ![notebook-0](https://github.com/Seedarchangel/TuChart/blob/master/Example_Graphs/Screen%20Shot%202017-08-29%20at%202.12.53%20AM.png)
 #### 多图并列
 ![notebook-0](https://github.com/Seedarchangel/TuChart/blob/master/Example_Graphs/Screen%20Shot%202017-08-28%20at%209.01.12%20PM.png)
+#### 可拖拽／缩放
+![notebook-0](https://github.com/Seedarchangel/TuChart/blob/master/Example_Graphs/sample.gif)
 
 ## 使用方法
 ```pip install tuchart```
 
-之后在此directory
+之后在此directory（不同操作系统或有不同）
 
 ```/user/anaconda/lib/python2.7/site-packages/tuchart```
 
@@ -21,6 +23,7 @@ TuChart是一个基于Echarts和qtpy的股票绘图应用
 在左侧的菜单右键想要进行绘制的股票，选择数据类型，之后点击绿色箭头即可绘制。不建议同时绘制超过5张以上。
 
 ![Manual](https://github.com/Seedarchangel/TuChart/blob/master/Example_Graphs/SLYJiZEBeD.gif)
+
 
 
 ## 依赖
@@ -55,7 +58,7 @@ Tuchart目前支持的数据类型有：
 * 股票行业列表缓存，避免每次开启程序时的加载
 ## 联系作者
 * 邮箱：rzli2@illinois.edu
-* 微信seedarchangel
+* 微信：seedarchangel
 
 
 
