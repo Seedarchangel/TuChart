@@ -14,11 +14,15 @@ TuChart是一个基于Echarts和Tushare的股票视觉化应用
 ## 使用方法
 ```pip install tuchart```
 
-之后在此directory（不同操作系统或有不同）
+之后在tuchart的路径下，如
 
 ```/user/anaconda/lib/python2.7/site-packages/tuchart```
 
 运行```python main.py```
+
+tuchart在您电脑具体的目录路径可以使用```pip show tuchart```指令下返回的Location查看，如:
+![notebook-0](https://github.com/Seedarchangel/TuChart/blob/master/Example_Graphs/tuchart_path.png)
+使用时在此路径后追加```/tuchart```即可
 
 在左侧的菜单右键想要进行绘制的股票，选择数据类型，之后点击绿色箭头即可绘制。不建议同时绘制超过5张以上。
 
