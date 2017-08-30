@@ -57,10 +57,15 @@ Tuchart目前支持的数据类型有：
 ##### 注意：因为数据源限制，使用5分钟线，15分钟线和30分钟线时，将无法定义日期。
 
 ## 版本信息
-下个版本将加入
+欢迎提交Issues。下个版本将加入
 * 各大指数数据
 * 前十股东持股占比
 * 股票行业列表缓存，避免每次开启程序时的加载
+
+## 参考
+* Tushare http://tushare.org/
+* Echarts http://echarts.baidu.com/
+
 ## 联系作者
 * 邮箱：rzli2@illinois.edu
 * 微信：seedarchangel
