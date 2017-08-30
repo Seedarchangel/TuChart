@@ -10,8 +10,14 @@ TuChart是一个基于Echarts和qtpy的中国股票绘图应用。
 ![notebook-0](https://github.com/Seedarchangel/TuChart/blob/master/Example_Graphs/Screen%20Shot%202017-08-28%20at%209.01.12%20PM.png)
 
 ## 使用方法
-```python main.py```
-In Development
+```pip install tuchart```
+
+之后在此directory
+
+```/users//anaconda/lib/python2.7/site-packages```
+
+运行```python tuchart```
+
 
 ## 依赖
 请安装anaconda 2.7,并另外安装
@@ -35,7 +41,7 @@ Tuchart目前支持的数据类型有：
 下个版本将加入
 * 各大指数数据
 * 前十股东持股占比
-
+* 股票行业列表缓存，避免每次开启程序时的加载
 ## 联系作者
 * 邮箱：rzli2@illinois.edu
 * 微信seedarchangel
