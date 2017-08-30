@@ -14,9 +14,9 @@ TuChart是一个基于Echarts和qtpy的股票绘图应用
 
 之后在此directory
 
-```/user/anaconda/lib/python2.7/site-packages```
+```/user/anaconda/lib/python2.7/site-packages/tuchart```
 
-运行```python tuchart```
+运行```python main.py```
 
 在左侧的菜单右键想要进行绘制的股票，选择数据类型，之后点击绿色箭头即可绘制。不建议同时绘制超过5张以上。
 
