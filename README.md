@@ -14,7 +14,7 @@ TuChart是一个基于Echarts和qtpy的股票绘图应用
 
 之后在此directory
 
-```/users//anaconda/lib/python2.7/site-packages```
+```/user/anaconda/lib/python2.7/site-packages```
 
 运行```python tuchart```
 
