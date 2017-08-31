@@ -25,7 +25,7 @@ tuchart在您电脑具体的目录路径可以使用```pip show tuchart```指令
 使用时在此路径后追加```/tuchart```即可
 
 在左侧的菜单右键想要进行绘制的股票，选择数据类型，之后点击绿色箭头即可绘制。不建议同时绘制超过5张以上。
-##### 注意：在下方绘图项数量为0时，点击箭头将会导致程序崩溃，将在下个版本做修复
+
 
 ![Manual](https://github.com/Seedarchangel/TuChart/blob/master/Example_Graphs/SLYJiZEBeD.gif)
 
@@ -36,7 +36,8 @@ tuchart在您电脑具体的目录路径可以使用```pip show tuchart```指令
 
 1. pyecharts
 2. tushare
-使用```pip install pyecharts, tushare```即可安装
+3. qtpy
+使用```pip install pyecharts, tushare, qtpy```即可安装
 
 ## 数据类型
 Tuchart目前支持的数据类型有：
@@ -56,11 +57,24 @@ Tuchart目前支持的数据类型有：
 3. 个股分笔交易数据
 ##### 注意：因为数据源限制，使用5分钟线，15分钟线和30分钟线时，将无法定义日期。
 
-## 版本信息
+## 更新信息
+0.1.2.3 
+* 增加了每12小时缓存一次行业个股数据的脚本，12小时内将读取本地json，大幅缩短开启时间／降低接口负担
+* 提高稳定性，降低崩溃几率
+* 加入了新的大盘指数：
+  1. 上证指数
+  2. 深圳成指
+  3. 沪深300指数
+  4. 上证50
+  5. 中小板
+  6. 创业板
+
+
+
 欢迎提交Issues。下个版本将加入
-* 各大指数数据
 * 前十股东持股占比
-* 股票行业列表缓存，避免每次开启程序时的加载
+* 多图绘制在同一个坐标轴内
+* 其他
 
 ## 参考
 * Tushare http://tushare.org/
