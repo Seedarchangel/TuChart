@@ -66,6 +66,12 @@ class MyUi(QMainWindow):
         #zsparent = QTreeWidgetItem(self.ui.treeWidget)
         #zsparent.setText(0,"股票指数")
         #zsnames =["上证指数-sh","深圳成指-sz","沪深300指数-hs300","上证50-"]
+        zsparent = QTreeWidgetItem(self.ui.treeWidget)
+        zsparent.setText(0, "股票指数")
+        zsnames = ["上证指数-sh", "深圳成指-sz", "沪深300指数-hs300", "上证50-sz50", "中小板-zxb", "创业板-cyb"]
+        for k in zsnames:
+            child = QTreeWidgetItem(zsparent)
+            child.setText(0, k)
 
         for j in list1:
             parent = QTreeWidgetItem(self.ui.treeWidget)  #populate treewidget with names
@@ -221,6 +227,8 @@ class MyUi(QMainWindow):
             #return
         root = self.ui.treeWidget_2.invisibleRootItem()# This is for iterating child items
         child_count = root.childCount()
+        if child_count==0:
+            return
         for i in range(child_count):
             if root.child(i).child(0):
                 array = []
