@@ -39,6 +39,7 @@ tuchart在您电脑具体的目录路径可以使用```pip show tuchart```指令
 1. pyecharts
 2. tushare
 3. qtpy
+
 使用```pip install pyecharts, tushare, qtpy```即可安装
 
 ## 数据类型
