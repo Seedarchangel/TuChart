@@ -48,7 +48,7 @@ tuchart在您电脑具体的目录路径可以使用```pip show tuchart```指令
 
 即可安装
 
-##### 注意：目前在pyecharts最新版本下无法拖拽／缩放，请安装ver 0.2.1。
+##### 注意：目前在pyecharts最新版本下无法拖拽／缩放，请安装pyecharts 0.2.1。
 
 ## 数据类型
 Tuchart目前支持的数据类型有：
