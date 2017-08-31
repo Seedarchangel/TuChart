@@ -12,9 +12,9 @@ TuChart是一个基于Echarts和Tushare的股票视觉化应用
 ![notebook-0](https://github.com/Seedarchangel/TuChart/blob/master/Example_Graphs/sample.gif)
 
 ## 使用方法
-```pip install tuchart```
+命令行```pip install tuchart```
 
-#### 注意：为了保证最佳的使用效果，请确保您下载的是最新版本0.1.2.3!
+#### 注意：为了保证最佳的使用效果，请确保您下载的是最新版本0.1.2.3
 
 之后在tuchart的路径下，如
 
