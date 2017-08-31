@@ -88,9 +88,6 @@ Tuchart目前支持的数据类型有：
 * 多图绘制在同一个坐标轴内
 * 其他
 
-## 参考
-* Tushare http://tushare.org/
-* Echarts http://echarts.baidu.com/
 
 ## 联系作者
 * 邮箱：rzli2@illinois.edu
