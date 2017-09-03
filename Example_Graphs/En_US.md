@@ -49,16 +49,17 @@ Tuchart currently supports：
 * 15 minute average
 * 30 minute average
 
-3. Tick data of individual docs
+3. Tick data of individual stocks
 
 ## Updates
 0.1.2.3 
 * Added script to save stock list every 12 hours
 * Increased stability
-* Auto-resize Image according to size of the app-------------------------------------------------------------------------------------
+* Auto-resize Image according to size of the app
 * Added more stock indexes
 
 ## Contact:
 Email: rzli2@illinois.edu
+
 Wechat: seedarchangel
 
