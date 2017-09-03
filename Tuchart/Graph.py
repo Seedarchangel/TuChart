@@ -5,6 +5,11 @@ import re
 import tushare as ts
 import time
 
+try:
+    xrange          # Python 2
+except NameError:
+    xrange = range  # Python 3
+
 def calculateMa(data, Daycount):
     sum = 0
     result = list( 0 for x in data)#used to calculate ma. Might be deprecated for future versions
