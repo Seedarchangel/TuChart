@@ -1,3 +1,8 @@
+TuChart
+=================
+TuChart is a plotting tool for Chinese stock market.
+
+
 ## Usage Examples
 #### Candlestick Charts
 ![notebook-0](https://github.com/Seedarchangel/TuChart/blob/master/Example_Graphs/Screen%20Shot%202017-08-29%20at%203.30.19%20PM.png?raw=true)
@@ -27,6 +32,33 @@ add```/tuchart```to pinpoint the tuchart directory.
 
 Right click to choose the name of stock and type of data you would like to plot. Then, press the green arrow button to plot. Due to the constraints of size, it is recommended to plot fewer than 5 graphs at the same time.
 
-
 ![Manual](https://github.com/Seedarchangel/TuChart/blob/master/Example_Graphs/SLYJiZEBeD.gif)
+
+## Supported Datatypes
+Currently supported datatypes by Tuchart are：
+1. Raw Stock Data
+* Day average
+* Week average
+* Month average
+* 15 minute average
+* 30 minute average
+2. Restoration Data
+* Day average
+* Week average
+* Month average
+* 15 minute average
+* 30 minute average
+
+3. Tick data of individual docs
+
+## Updates
+0.1.2.3 
+* Added script to save stock list every 12 hours
+* Increased stability
+* Auto-resize Image according to size of the app-------------------------------------------------------------------------------------
+* Added more stock indexes
+
+## Contact:
+Email: rzli2@illinois.edu
+Wechat: seedarchangel
 
