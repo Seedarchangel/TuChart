@@ -1,6 +1,6 @@
 TuChart
 =================
-TuChart is a plotting tool for the stock market of China.
+TuChart is a plotting tool for stock market of China.
 
 
 ## Usage Examples
@@ -37,9 +37,9 @@ Right click to choose the name of stock and type of data you would like to plot.
 ## Supported Datatypes
 Tuchart currently supports：
 1. Raw Stock Data
-* Day average
-* Week average
-* Month average
+* Daily average
+* Weekly average
+* Monthly average
 * 15 minute average
 * 30 minute average
 2. Restoration Data
