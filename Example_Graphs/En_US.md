@@ -35,7 +35,7 @@ Right click to choose the name of stock and type of data you would like to plot.
 ![Manual](https://github.com/Seedarchangel/TuChart/blob/master/Example_Graphs/SLYJiZEBeD.gif)
 
 ## Supported Datatypes
-Currently supported datatypes by Tuchart are：
+Tuchart currently supports：
 1. Raw Stock Data
 * Day average
 * Week average
