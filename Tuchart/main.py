@@ -13,6 +13,7 @@ import cPickle
 import json
 list1 = []
 
+
 class MyUi(QMainWindow):
     def __init__(self):
         super(MyUi, self).__init__()
@@ -103,15 +104,19 @@ class MyUi(QMainWindow):
 
         #self.ui.commandLinkButton.clicked.connect(lambda action: self.classify(action, self.ui.treewidget))
         #  QSizePolicy
-        retain_size = self.ui.dateEdit_2.sizePolicy()
-        retain_size.setRetainSizeWhenHidden(True)
-        self.ui.dateEdit_2.setSizePolicy(retain_size)
-        retain_size = self.ui.comboBox.sizePolicy()
-        retain_size.setRetainSizeWhenHidden(True)
-        self.ui.comboBox.setSizePolicy(retain_size)
-        retain_size = self.ui.label_2.sizePolicy()
-        retain_size.setRetainSizeWhenHidden(True)
-        self.ui.label_2.setSizePolicy(retain_size)
+        try:
+            retain_size = self.ui.dateEdit_2.sizePolicy()
+            retain_size.setRetainSizeWhenHidden(True)
+            self.ui.dateEdit_2.setSizePolicy(retain_size)
+            retain_size = self.ui.comboBox.sizePolicy()
+            retain_size.setRetainSizeWhenHidden(True)
+            self.ui.comboBox.setSizePolicy(retain_size)
+            retain_size = self.ui.label_2.sizePolicy()
+            retain_size.setRetainSizeWhenHidden(True)
+            self.ui.label_2.setSizePolicy(retain_size)
+        except AttributeError:
+            print "No PYQT5 Binding! Widgets might be deformed"
+
 
 
         self.ui.dateEdit.setDate(QPast)
