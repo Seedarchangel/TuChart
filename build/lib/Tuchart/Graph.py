@@ -34,15 +34,19 @@ def graphpage(items,startdate,enddate,option,width1, height1):
                 if len(a[0])==4 and a[0][2]=="bar": #for 分笔data
                     overlap = Overlap()
                     form = [e[1] for e in a]
-                    bar = Bar(j[0] + "-" + j[2], width=width1*10/11, height=(height1*10/11)/len(items))
-                    bar.add(j[0]+"-"+j[2], time, form,is_datazoom_show=True, datazoom_type="slider",yaxis_min="dataMin",yaxis_max="dataMax")
+                    bar = Bar(j[0] + "-" + j[2], width=width1 * 10 / 11, height=(height1 * 10 / 11) / len(items))
+                    bar.add(j[0] + "-" + j[2], time, form, is_datazoom_show=True, datazoom_type="slider",
+                            yaxis_min="dataMin", yaxis_max="dataMax")
                     overlap.add(bar)
+
                     line = Line(j[0] + "price", width=width1 * 10 / 11, height=(height1 * 10 / 11) / len(items))
                     price = [e[3] for e in a]
                     line.add(j[0] + "price", time, price, is_datazoom_show=True, datazoom_type="slider",
-                                 yaxis_min="dataMin",yaxis_type="value")
-                    overlap.add(line,yaxis_index=1,is_add_yaxis=True)
+                             yaxis_min="dataMin", yaxis_type="value")
+                    overlap.add(line,yaxis_index=1, is_add_yaxis=True)
+
                     page.add(overlap)
+
 
                     #need more statement
                 else:

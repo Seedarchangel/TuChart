@@ -20,7 +20,7 @@ AUTHOR = 'Rong Zhou Li'
 
 # What packages are required for this module to be executed?
 REQUIRED = [
-"pyecharts","tushare","qtpy"
+"pyecharts==0.2.0","tushare","qtpy"
     # 'requests', 'maya', 'records',
 ]
 

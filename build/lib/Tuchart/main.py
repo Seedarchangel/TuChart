@@ -1,7 +1,5 @@
-
 #-*- coding:utf-8 -*-
-import os, sys,sip,time
-import os.path
+import os,sys,sip,time
 from datetime import datetime,timedelta
 from qtpy.QtWidgets import QTreeWidgetItem,QMenu,QApplication,QAction,QMainWindow
 from qtpy import QtGui,QtWidgets
@@ -15,43 +13,47 @@ import cPickle
 import json
 list1 = []
 
+
 class MyUi(QMainWindow):
     def __init__(self):
         super(MyUi, self).__init__()
         self.ui = Ui_MainWindow()
         self.ui.setupUi(self)
-        #cwd = os.getcwd()
-        #cwd = str(cwd)
-        #if os.path.isfile(cwd+"/time"):
-         #   with open("time","r") as outfile:#reads current time
-          #      history = cPickle.load(outfile)
-           # if (datetime.now()-history).total_seconds()<43200: #measures if time elapse>12 hours
-            #    print "Less than 12 hours. Loading previously saved Json..."
-             #   with open("time","w") as infile: #update time
-              #      cPickle.dump(datetime.now(),infile)
+        cwd = os.getcwd()
+        cwd = str(cwd)
+        if os.path.isfile(cwd+"/time"):
+            with open("time","r") as outfile:#reads current time
+                history = cPickle.load(outfile)
+            if (datetime.now()-history).total_seconds()<43200: #measures if time elapse>12 hours
+                print("Less than 12 hours. Loading previously saved Json...")
+                #with open("time","w") as infile: #update time
+                    #cPickle.dump(datetime.now(),infile)
 
-            #else:
-             #   print "More than 12 hours. Updating Json..."
-              #  data = ts.get_industry_classified()
-               # data.to_json(cwd + "/class.json", orient="columns")#writes class data so no need to call Tushare agian
-                #now = datetime.now()
-                #with open("time", "w+") as outfile: #update time
-                 #   cPickle.dump(now, outfile)
+            else:
+                print("More than 12 hours. Updating Json...")
+                data = ts.get_industry_classified()
+                #data.to_json(cwd + "/class.json", orient="columns")#writes class data so no need to call Tushare agian
+                with open("class.json","w+") as outfile:
+                    cPickle.dump(data,outfile)
+                now = datetime.now()
+                with open("time", "w+") as outfile: #update time
+                    cPickle.dump(now, outfile)
 
-       # else:
-        #    print "No json found!"#If this is first time using tuchart in this directory
-         #   data = df()
-          #  data = ts.get_industry_classified()
-           # print data
-           # var = data.to_json(cwd+"/class.json",orient="columns")
-           # with open('class.json', 'w+') as outfile: #records json
-          #      json.dump(var, outfile)
-          #  now = datetime.now()
-           # with open("time", "w+") as outfile:
-           #     cPickle.dump(now,outfile)
+        else:
+            print("No json found!") #If this is first time using tuchart in this directory
+            data = df()
+            data = ts.get_industry_classified()
+            #var = data.to_json(cwd+"/class.json",orient="columns")
+            with open('class.json', 'w+') as outfile: #records json
+                cPickle.dump(data, outfile)
+            now = datetime.now()
+            with open("time", "w+") as outfile:
+                cPickle.dump(now,outfile)
 
-     #   series = pd.read_json(cwd + "\\class.json")
-        series = ts.get_industry_classified()
+        with open("class.json", "r") as infile:  # reads current time
+            series = cPickle.load(infile)
+        #series = pd.read_json(cwd + "\\class.json")
+        #series = ts.get_industry_classified()
         series = pd.DataFrame(series)
         curdate = time.strftime("%Y/%m/%d") #gets current time to put into dateedit
         dateobj = datetime.strptime(curdate, "%Y/%m/%d")#converts to datetime object
@@ -59,13 +61,19 @@ class MyUi(QMainWindow):
         pasttime = datetime.strftime(past, "%Y/%m/%d")
         QPast = QDate.fromString(pasttime,"yyyy/MM/dd") #convert to qtime so that widget accepts the values
         Qcurdate = QDate.fromString(curdate,"yyyy/MM/dd")
-        #print series
+        print(series)
         list1 = series["c_name"].tolist()  #Get industry categories. Filters out redundant ones
         list1 = list(set(list1))
         #w = database()
         #zsparent = QTreeWidgetItem(self.ui.treeWidget)
         #zsparent.setText(0,"股票指数")
         #zsnames =["上证指数-sh","深圳成指-sz","沪深300指数-hs300","上证50-"]
+        zsparent = QTreeWidgetItem(self.ui.treeWidget)
+        zsparent.setText(0, "股票指数")
+        zsnames = ["上证指数-sh", "深圳成指-sz", "沪深300指数-hs300", "上证50-sz50", "中小板-zxb", "创业板-cyb"]
+        for k in zsnames:
+            child = QTreeWidgetItem(zsparent)
+            child.setText(0, k)
 
         for j in list1:
             parent = QTreeWidgetItem(self.ui.treeWidget)  #populate treewidget with names
@@ -96,15 +104,19 @@ class MyUi(QMainWindow):
 
         #self.ui.commandLinkButton.clicked.connect(lambda action: self.classify(action, self.ui.treewidget))
         #  QSizePolicy
-        retain_size = self.ui.dateEdit_2.sizePolicy()
-        retain_size.setRetainSizeWhenHidden(True)
-        self.ui.dateEdit_2.setSizePolicy(retain_size)
-        retain_size = self.ui.comboBox.sizePolicy()
-        retain_size.setRetainSizeWhenHidden(True)
-        self.ui.comboBox.setSizePolicy(retain_size)
-        retain_size = self.ui.label_2.sizePolicy()
-        retain_size.setRetainSizeWhenHidden(True)
-        self.ui.label_2.setSizePolicy(retain_size)
+        try:
+            retain_size = self.ui.dateEdit_2.sizePolicy()
+            retain_size.setRetainSizeWhenHidden(True)
+            self.ui.dateEdit_2.setSizePolicy(retain_size)
+            retain_size = self.ui.comboBox.sizePolicy()
+            retain_size.setRetainSizeWhenHidden(True)
+            self.ui.comboBox.setSizePolicy(retain_size)
+            retain_size = self.ui.label_2.sizePolicy()
+            retain_size.setRetainSizeWhenHidden(True)
+            self.ui.label_2.setSizePolicy(retain_size)
+        except AttributeError:
+            print "No PYQT5 Binding! Widgets might be deformed"
+
 
 
         self.ui.dateEdit.setDate(QPast)
@@ -120,21 +132,21 @@ class MyUi(QMainWindow):
 
 
     def modifycombo(self):
-        if self.ui.combobox.currentText()=="复权".decode("utf-8"): #if 复权 is selected, clear all existing queries to avoid value conflict
+        if self.ui.combobox.currentText()==u"复权": #if 复权 is selected, clear all existing queries to avoid value conflict
             self.ui.label_2.show()
             self.ui.dateEdit_2.show()
             self.ui.comboBox.show()
             self.ui.comboBox.clear()
             self.ui.comboBox.addItems(["hfq", "qfq"])
             self.ui.treeWidget_2.clear()
-        if self.ui.combobox.currentText()=="K线".decode("utf-8"):
+        if self.ui.combobox.currentText()==u"K线":
             self.ui.label_2.show()
             self.ui.dateEdit_2.show()
             self.ui.comboBox.show()
             self.ui.comboBox.clear()
             self.ui.comboBox.addItems(["D", "W", "M", "5", "15", "30", "60"])#same as above
             self.ui.treeWidget_2.clear()
-        if self.ui.combobox.currentText()=="分笔数据".decode("utf-8"):
+        if self.ui.combobox.currentText()==u"分笔数据":
             self.ui.comboBox.hide()
             self.ui.label_2.hide()
             self.ui.dateEdit_2.hide()
@@ -184,15 +196,15 @@ class MyUi(QMainWindow):
 
 
     def methodSelected(self, action, collec):
-        #print action.text() #Choice
+        #print(action.text()) #Choice
         #if (self.ui.treewidget.count() == 5):
          #   self.ui.label.setText("Maximum number of queries")
          #   return
         #self.ui.label.setText("")
         Choice = action.text()
         Stock = collec
-        #print collec  #Stock Name
-        #print db_origin   #DataBase name
+        #print(collec)  #Stock Name
+        #print(db_origin)  #DataBase name
         #list1 = [self.tr(Stock+"-"+Choice+"-"+db_origin)]
         #self.ui.treewidget.addItems(list1)
         parent = QTreeWidgetItem(self.ui.treeWidget_2)
@@ -221,12 +233,14 @@ class MyUi(QMainWindow):
             #return
         root = self.ui.treeWidget_2.invisibleRootItem()# This is for iterating child items
         child_count = root.childCount()
+        if child_count==0:
+            return
         for i in range(child_count):
             if root.child(i).child(0):
                 array = []
                 temp = root.child(i)
                 #mergelist = self.recurse(temp,array)
-                #print mergelist
+                #print(mergelist)
                 parent = root.child(i).text(0)
                 mergelist = []
                 for j in range(temp.childCount()):
@@ -267,13 +281,13 @@ class MyUi(QMainWindow):
                 index = index.parent()
                 level = level + 1
             menu = QMenu()
-            #print collec, db_origin
+            #print((collec, db_origin))
             if level ==0:
                 pass
             else:
                 #keyarray = GetKeys(collec, db_origin)
                 #if "Open" in keyarray:
-                if self.ui.combobox.currentText()=="K线".decode("utf-8"):
+                if self.ui.combobox.currentText()==u"K线":
                     menu.addAction(QAction("Kline", menu, checkable=True))
                     menu.addAction(QAction("Open", menu, checkable=True))
                     menu.addAction(QAction("Close", menu, checkable=True))#open up different menu with different kind of graphs
@@ -282,7 +296,7 @@ class MyUi(QMainWindow):
                     menu.addAction(QAction("Volume", menu, checkable=True))
                     #menu.addAction(QAction("P_change", menu, checkable=True))
                     #menu.addAction(QAction("Turnover",menu,checkable=True))
-                if self.ui.combobox.currentText()=="复权".decode("utf-8"):
+                if self.ui.combobox.currentText()==u"复权":
                     menu.addAction(QAction("Kline", menu, checkable=True))
                     menu.addAction(QAction("Open", menu, checkable=True))
                     menu.addAction(QAction("Close", menu, checkable=True))
@@ -290,7 +304,7 @@ class MyUi(QMainWindow):
                     menu.addAction(QAction("Low", menu, checkable=True))
                     menu.addAction(QAction("Volume", menu, checkable=True))
                     menu.addAction(QAction("Amount", menu, checkable=True))
-                if self.ui.combobox.currentText()=="分笔数据".decode("utf-8"):
+                if self.ui.combobox.currentText()==u"分笔数据":
                     menu.addAction(QAction("分笔", menu, checkable=True))
                 #for g in keyarray:
                 #menu.addAction(QAction(g, menu, checkable=True))
