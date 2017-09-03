@@ -43,9 +43,9 @@ Tuchart currently supports：
 * 15 minute average
 * 30 minute average
 2. Restoration Data
-* Day average
-* Week average
-* Month average
+* Daily average
+* Weekly average
+* Monthly average
 * 15 minute average
 * 30 minute average
 
