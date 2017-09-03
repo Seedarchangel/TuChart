@@ -1,6 +1,6 @@
 TuChart
 =================
-TuChart is a plotting tool for Chinese stock market.
+TuChart is a plotting tool for the stock market of China.
 
 
 ## Usage Examples
