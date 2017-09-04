@@ -1,4 +1,5 @@
 #-*- coding:utf-8 -*-
+
 from pyecharts import Kline, Line, Page,Overlap,Bar
 from pandas import DataFrame as df
 import re
@@ -35,14 +36,13 @@ def graphpage(items,startdate,enddate,option,width1, height1):
                     overlap = Overlap()
                     form = [e[1] for e in a]
                     bar = Bar(j[0] + "-" + j[2], width=width1 * 10 / 11, height=(height1 * 10 / 11) / len(items))
-                    bar.add(j[0] + "-" + j[2], time, form, is_datazoom_show=True, datazoom_type="slider",
-                            yaxis_min="dataMin", yaxis_max="dataMax")
+                    bar.add(j[0] + "-" + j[2], time, form, yaxis_min = "dataMin",yaxis_max = "dataMax",is_datazoom_show = True, datazoom_type = "slider")
                     overlap.add(bar)
 
                     line = Line(j[0] + "price", width=width1 * 10 / 11, height=(height1 * 10 / 11) / len(items))
                     price = [e[3] for e in a]
-                    line.add(j[0] + "price", time, price, is_datazoom_show=True, datazoom_type="slider",
-                             yaxis_min="dataMin", yaxis_type="value")
+                    line.add(j[0] + "price", time, price, yaxis_min = "dataMin",yaxis_max = "dataMax", is_datazoom_show = True, datazoom_type = "slider",
+                            yaxis_type="value")
                     overlap.add(line,yaxis_index=1, is_add_yaxis=True)
 
                     page.add(overlap)
