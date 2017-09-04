@@ -1,4 +1,5 @@
 #-*- coding:utf-8 -*-
+from __future__ import print_function
 import os,sys,sip,time
 from datetime import datetime,timedelta
 from qtpy.QtWidgets import QTreeWidgetItem,QMenu,QApplication,QAction,QMainWindow
@@ -115,7 +116,7 @@ class MyUi(QMainWindow):
             retain_size.setRetainSizeWhenHidden(True)
             self.ui.label_2.setSizePolicy(retain_size)
         except AttributeError:
-            print "No PYQT5 Binding! Widgets might be deformed"
+            print("No PYQT5 Binding! Widgets might be deformed")
 
 
 
