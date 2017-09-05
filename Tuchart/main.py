@@ -152,6 +152,13 @@ class MyUi(QMainWindow):
             self.ui.label_2.hide()
             self.ui.dateEdit_2.hide()
             self.ui.treeWidget_2.clear()
+        if self.ui.combobox.currentText()==u"综合数据":
+            self.ui.comboBox.show()
+            self.ui.comboBox.clear()
+            self.ui.comboBox.addItems(["1min","5min","15min","30min","60min"])
+            self.ui.label_2.hide()
+            self.ui.dateEdit_2.hide()
+            self.ui.treeWidget_2.clear()
 
     def graphmerge(self, combineKeyword):
         sth = ""
