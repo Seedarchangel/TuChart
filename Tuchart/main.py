@@ -173,6 +173,8 @@ class MyUi(QMainWindow):
     def openWidgetMenu(self,position):
         indexes = self.ui.treeWidget_2.selectedIndexes()
         item = self.ui.treeWidget_2.itemAt(position)
+        if item == None:
+            return
         #item = self.ui.listWidget.itemAt(position)
         if len(indexes) > 0:
             menu = QMenu()
