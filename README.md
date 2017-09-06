@@ -29,18 +29,18 @@ TuChart是一个基于Echarts和Tushare的股票视觉化应用
 tuchart在您电脑具体的目录路径可以使用```pip show tuchart```指令下返回的Location查看，如:
 ![notebook-0](https://github.com/Seedarchangel/TuChart/blob/master/Example_Graphs/tuchart_path.png)
 使用时在此路径后追加```/tuchart```即可
+在左上角的盒子选择数据类型
+![manual](https://github.com/Seedarchangel/TuChart/blob/master/Example_Graphs/Screen%20Shot%202017-09-06%20at%201.33.26%20PM.png)
 
-在左侧的菜单右键想要进行绘制的股票，选择数据类型，之后点击绿色箭头即可绘制。不建议同时绘制超过5张以上。
-
+然后在左侧的菜单右键想要进行绘制的股票，选择类型，之后点击绿色箭头即可生成。不建议同时绘制超过5张以上。
 
 ![Manual](https://github.com/Seedarchangel/TuChart/blob/master/Example_Graphs/SLYJiZEBeD.gif)
-
 
 
 ## 依赖
 请安装anaconda 2.7,并另外安装
 
-1. pyecharts
+1. pyecharts==0.2.0
 2. tushare
 3. qtpy
 
