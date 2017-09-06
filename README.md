@@ -8,10 +8,13 @@ TuChart是一个基于Echarts和Tushare的股票视觉化应用
 ![notebook-0](https://github.com/Seedarchangel/TuChart/blob/master/Example_Graphs/Screen%20Shot%202017-08-29%20at%203.30.19%20PM.png?raw=true)
 #### 个股分笔
 ![notebook-0](https://github.com/Seedarchangel/TuChart/blob/master/Example_Graphs/Screen%20Shot%202017-08-29%20at%202.12.53%20AM.png)
-#### 多图并列
-![notebook-0](https://github.com/Seedarchangel/TuChart/blob/master/Example_Graphs/Screen%20Shot%202017-08-28%20at%209.01.12%20PM.png)
-#### 可拖拽／缩放
+#### 个股季度前十大股东
+![notebook-0](https://github.com/Seedarchangel/TuChart/blob/master/Example_Graphs/Top_10.gif)
+#### 多图并列，可拖拽／缩放
 ![notebook-0](https://github.com/Seedarchangel/TuChart/blob/master/Example_Graphs/sample.gif)
+#### 个股历史高频数据（例为1分钟线）
+![notebook-0](https://github.com/Seedarchangel/TuChart/blob/master/Example_Graphs/Screen%20Shot%202017-09-05%20at%2011.55.53%20PM.png)
+##### 高频数据由单日Tick计算得出，具体计算方法来自Tushare作者Waditu：[如何用TICK数据生成分钟线数据](https://mp.weixin.qq.com/s?__biz=MzAwOTgzMDk5Ng==&mid=2650833965&idx=1&sn=e3e74639c068e7a1e41a35bb1decd313&chksm=80adb316b7da3a00de4191d4da6a5a7cab60fa3d282876fcf0b4d6dd8fc234528a316f5aa50a&mpshare=1&scene=1&srcid=090514fJTxEaB4CbnBI85x60&pass_ticket=qA7MkXEYQz2xA0uHwCD8eF43XfYsQMFMTyDT0euW7YFDRhLeVPR8dAxIaK6gxprk#rd)
 
 ## 使用方法
 命令行```pip install tuchart```
