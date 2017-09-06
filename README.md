@@ -8,8 +8,8 @@ TuChart是一个基于Echarts和Tushare的股票视觉化应用
 ![notebook-0](https://github.com/Seedarchangel/TuChart/blob/master/Example_Graphs/Screen%20Shot%202017-08-29%20at%203.30.19%20PM.png?raw=true)
 #### 个股分笔
 ![notebook-0](https://github.com/Seedarchangel/TuChart/blob/master/Example_Graphs/Screen%20Shot%202017-08-29%20at%202.12.53%20AM.png)
-#### 个股季度前十大股东
-![notebook-0](https://github.com/Seedarchangel/TuChart/blob/master/Example_Graphs/Top_10.gif)
+#### 个股季度十大股东
+![notebook-0](https://github.com/Seedarchangel/TuChart/blob/master/Example_Graphs/Revised.gif)
 #### 多图并列，可拖拽／缩放
 ![notebook-0](https://github.com/Seedarchangel/TuChart/blob/master/Example_Graphs/sample.gif)
 #### 个股历史高频数据（例为1分钟线）
@@ -76,11 +76,10 @@ Tuchart目前支持的数据类型有：
 * 15分钟线
 * 30分钟线
 * 60分钟线
-
-##### 注意：因为数据源限制，使用K线下的5分钟线，15分钟线和30分钟线时，将无法定义日期。然而，可以使用新的历史分钟项查看任意单日的高频数据。高频数据由单日Tick计算得出，具体计算方法来自Tushare作者Waditu：[如何用TICK数据生成分钟线数据](https://mp.weixin.qq.com/s?__biz=MzAwOTgzMDk5Ng==&mid=2650833965&idx=1&sn=e3e74639c068e7a1e41a35bb1decd313&chksm=80adb316b7da3a00de4191d4da6a5a7cab60fa3d282876fcf0b4d6dd8fc234528a316f5aa50a&mpshare=1&scene=1&srcid=090514fJTxEaB4CbnBI85x60&pass_ticket=qA7MkXEYQz2xA0uHwCD8eF43XfYsQMFMTyDT0euW7YFDRhLeVPR8dAxIaK6gxprk#rd)
+##### 注意：可以使用新的历史分钟项查看历史任意单日的个股高频数据。高频数据由单日Tick计算得出，具体计算方法来自Tushare作者Waditu：[如何用TICK数据生成分钟线数据](https://mp.weixin.qq.com/s?__biz=MzAwOTgzMDk5Ng==&mid=2650833965&idx=1&sn=e3e74639c068e7a1e41a35bb1decd313&chksm=80adb316b7da3a00de4191d4da6a5a7cab60fa3d282876fcf0b4d6dd8fc234528a316f5aa50a&mpshare=1&scene=1&srcid=090514fJTxEaB4CbnBI85x60&pass_ticket=qA7MkXEYQz2xA0uHwCD8eF43XfYsQMFMTyDT0euW7YFDRhLeVPR8dAxIaK6gxprk#rd)
 5. 个股10大股东排行。选择日期即可显示该年的各季度10大股东排行。
 
-如此图，选择2016年任意一天将呈现2016年每个季度的10大股东排行。一次只能呈现一张股东排行图。
+如图，选择2016年任意一天将呈现2016年每个季度的10大股东排行。
 ![notebook-0](https://github.com/Seedarchangel/TuChart/blob/master/Example_Graphs/Screen%20Shot%202017-09-06%20at%2012.33.55%20AM.png?raw=true)
 
 
@@ -114,9 +113,7 @@ Tuchart目前支持的数据类型有：
 
 
 欢迎提交Issues。下个版本将加入
-* 前十股东持股占比
-* 多图绘制在同一个坐标轴内
-* 其他
+* 还没想好_(:з」∠)_
 
 
 ## 联系作者
