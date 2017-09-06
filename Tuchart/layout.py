@@ -143,7 +143,7 @@ class Ui_MainWindow(object):
         #self.menubar.setNativeMenuBar(False)
         self.combobox = QtWidgets.QComboBox()
         self.menubar.addWidget(self.combobox)
-        self.combobox.addItems(["K线", "复权", "分笔数据", "综合数据"])
+        self.combobox.addItems(["K线", "复权", "分笔数据", "历史分钟","十大股东"])
         self.comboBox.setFixedSize(55,40)
 
         MainWindow.addToolBar(self.menubar)

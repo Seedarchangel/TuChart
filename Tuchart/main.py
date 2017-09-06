@@ -62,7 +62,6 @@ class MyUi(QMainWindow):
         pasttime = datetime.strftime(past, "%Y/%m/%d")
         QPast = QDate.fromString(pasttime,"yyyy/MM/dd") #convert to qtime so that widget accepts the values
         Qcurdate = QDate.fromString(curdate,"yyyy/MM/dd")
-        print(series)
         list1 = series["c_name"].tolist()  #Get industry categories. Filters out redundant ones
         list1 = list(set(list1))
         #w = database()
@@ -152,10 +151,16 @@ class MyUi(QMainWindow):
             self.ui.label_2.hide()
             self.ui.dateEdit_2.hide()
             self.ui.treeWidget_2.clear()
-        if self.ui.combobox.currentText()==u"综合数据":
+        if self.ui.combobox.currentText()==u"历史分钟":
             self.ui.comboBox.show()
             self.ui.comboBox.clear()
             self.ui.comboBox.addItems(["1min","5min","15min","30min","60min"])
+            self.ui.label_2.hide()
+            self.ui.dateEdit_2.hide()
+            self.ui.treeWidget_2.clear()
+
+        if self.ui.combobox.currentText()==u"十大股东":
+            self.ui.comboBox.hide()
             self.ui.label_2.hide()
             self.ui.dateEdit_2.hide()
             self.ui.treeWidget_2.clear()
@@ -316,6 +321,17 @@ class MyUi(QMainWindow):
                     menu.addAction(QAction("Amount", menu, checkable=True))
                 if self.ui.combobox.currentText()==u"分笔数据":
                     menu.addAction(QAction("分笔", menu, checkable=True))
+                if self.ui.combobox.currentText()==u"历史分钟":
+                    menu.addAction(QAction("Kline", menu, checkable=True))
+                    menu.addAction(QAction("Open", menu, checkable=True))
+                    menu.addAction(QAction("Close", menu, checkable=True))
+                    menu.addAction(QAction("High", menu, checkable=True))
+                    menu.addAction(QAction("Low", menu, checkable=True))
+                    menu.addAction(QAction("Volume", menu, checkable=True))
+                    menu.addAction(QAction("Amount", menu, checkable=True))
+                if self.ui.combobox.currentText()==u"十大股东":
+                    menu.addAction(QAction("季度饼图", menu, checkable=True))
+                    #menu.addAction(QAction("持股比例", menu, checkable=True))
                 #for g in keyarray:
                 #menu.addAction(QAction(g, menu, checkable=True))
         menu.triggered.connect(lambda action: self.methodSelected(action, collec))
