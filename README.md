@@ -76,7 +76,6 @@ Tuchart目前支持的数据类型有：
 * 15分钟线
 * 30分钟线
 * 60分钟线
-
 ##### 注意：可以使用新的历史分钟项查看历史任意单日的个股高频数据。高频数据由单日Tick计算得出，具体计算方法来自Tushare作者Waditu：[如何用TICK数据生成分钟线数据](https://mp.weixin.qq.com/s?__biz=MzAwOTgzMDk5Ng==&mid=2650833965&idx=1&sn=e3e74639c068e7a1e41a35bb1decd313&chksm=80adb316b7da3a00de4191d4da6a5a7cab60fa3d282876fcf0b4d6dd8fc234528a316f5aa50a&mpshare=1&scene=1&srcid=090514fJTxEaB4CbnBI85x60&pass_ticket=qA7MkXEYQz2xA0uHwCD8eF43XfYsQMFMTyDT0euW7YFDRhLeVPR8dAxIaK6gxprk#rd)
 5. 个股10大股东排行。选择日期即可显示该年的各季度10大股东排行。
 
