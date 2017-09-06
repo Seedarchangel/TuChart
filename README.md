@@ -9,7 +9,7 @@ TuChart是一个基于Echarts和Tushare的股票视觉化应用
 #### 个股分笔
 ![notebook-0](https://github.com/Seedarchangel/TuChart/blob/master/Example_Graphs/Screen%20Shot%202017-08-29%20at%202.12.53%20AM.png)
 #### 个股季度前十大股东
-![notebook-0](https://github.com/Seedarchangel/TuChart/blob/master/Example_Graphs/Top_10.gif)
+![notebook-0](https://github.com/Seedarchangel/TuChart/blob/master/Example_Graphs/Revised.gif)
 #### 多图并列，可拖拽／缩放
 ![notebook-0](https://github.com/Seedarchangel/TuChart/blob/master/Example_Graphs/sample.gif)
 #### 个股历史高频数据（例为1分钟线）
