@@ -14,12 +14,11 @@ TuChart是一个基于Echarts和Tushare的股票视觉化应用
 ![notebook-0](https://github.com/Seedarchangel/TuChart/blob/master/Example_Graphs/sample.gif)
 #### 个股历史高频数据（例为1分钟线）
 ![notebook-0](https://github.com/Seedarchangel/TuChart/blob/master/Example_Graphs/Screen%20Shot%202017-09-05%20at%2011.55.53%20PM.png)
-##### 高频数据由单日Tick计算得出，具体计算方法来自Tushare作者Waditu：[如何用TICK数据生成分钟线数据](https://mp.weixin.qq.com/s?__biz=MzAwOTgzMDk5Ng==&mid=2650833965&idx=1&sn=e3e74639c068e7a1e41a35bb1decd313&chksm=80adb316b7da3a00de4191d4da6a5a7cab60fa3d282876fcf0b4d6dd8fc234528a316f5aa50a&mpshare=1&scene=1&srcid=090514fJTxEaB4CbnBI85x60&pass_ticket=qA7MkXEYQz2xA0uHwCD8eF43XfYsQMFMTyDT0euW7YFDRhLeVPR8dAxIaK6gxprk#rd)
 
 ## 使用方法
 命令行```pip install tuchart```
 
-#### 注意：为了保证最佳的使用效果，请确保您下载的是最新版本0.1.2.3
+#### 注意：为了保证最佳的使用效果，请确保您下载的是最新版本0.1.2.5
 
 之后在tuchart的路径下，如
 
@@ -71,9 +70,31 @@ Tuchart目前支持的数据类型有：
 * 15分钟线
 * 30分钟线
 3. 个股分笔交易数据
-##### 注意：因为数据源限制，使用5分钟线，15分钟线和30分钟线时，将无法定义日期。
+4. 个股高频历史数据（历史分钟）
+* 1分钟线
+* 5分钟线
+* 15分钟线
+* 30分钟线
+* 60分钟线
+
+##### 注意：因为数据源限制，使用K线下的5分钟线，15分钟线和30分钟线时，将无法定义日期。然而，可以使用新的历史分钟项查看任意单日的高频数据。高频数据由单日Tick计算得出，具体计算方法来自Tushare作者Waditu：[如何用TICK数据生成分钟线数据](https://mp.weixin.qq.com/s?__biz=MzAwOTgzMDk5Ng==&mid=2650833965&idx=1&sn=e3e74639c068e7a1e41a35bb1decd313&chksm=80adb316b7da3a00de4191d4da6a5a7cab60fa3d282876fcf0b4d6dd8fc234528a316f5aa50a&mpshare=1&scene=1&srcid=090514fJTxEaB4CbnBI85x60&pass_ticket=qA7MkXEYQz2xA0uHwCD8eF43XfYsQMFMTyDT0euW7YFDRhLeVPR8dAxIaK6gxprk#rd)
+5. 个股10大股东排行。选择日期即可显示该年的各季度10大股东排行。
+
+如此图，选择2016年任意一天将呈现2016年每个季度的10大股东排行。一次只能呈现一张股东排行图。
+![notebook-0](https://github.com/Seedarchangel/TuChart/blob/master/Example_Graphs/Screen%20Shot%202017-09-06%20at%2012.33.55%20AM.png?raw=true)
+
+
 
 ## 更新信息
+0.1.2.5
+* 增加了个股高频历史数据
+  * 1分钟线
+  * 5分钟线
+  * 15分钟线
+  * 30分钟线
+  * 60分钟线
+* 增加了个股10大股东排行 
+  
 0.1.2.4
 * 修复了Anaconda ver<4.0.2时，pyqt4不兼容的问题
 * 为了更加稳定的绘图，修改dependency为pyecharts==0.2.0
