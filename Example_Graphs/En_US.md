@@ -66,10 +66,10 @@ Tuchart currently supports：
 * Fixed dependency issues when user has PYQT4 Layer
 
 0.1.2.3
-1. Added script to save stock list every 12 hours
-2. Increased stability
-3. Auto-resize Image according to size of the app
-4. Added more stock indexes
+* Added script to save stock list every 12 hours
+* Increased stability
+* Auto-resize Image according to size of the app
+* Added more stock indexes
 
 ## Contact:
 Email: rzli2@illinois.edu
