@@ -1,8 +1,0 @@
-language: python
-python:
-  - "2.7"
-cache: pip
-install:
-  - pip install pyecharts,tushare,qtpy
-script:
-  - python main.py
