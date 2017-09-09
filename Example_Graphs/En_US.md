@@ -1,6 +1,6 @@
 TuChart
 =================
-TuChart is a plotting tool for stock market of China.
+TuChart is a plotting tool for the Chinese stock market.
 
 
 ## Usage Examples
@@ -8,8 +8,8 @@ TuChart is a plotting tool for stock market of China.
 ![notebook-0](https://github.com/Seedarchangel/TuChart/blob/master/Example_Graphs/Screen%20Shot%202017-08-29%20at%203.30.19%20PM.png?raw=true)
 #### Tick Charts
 ![notebook-0](https://github.com/Seedarchangel/TuChart/blob/master/Example_Graphs/Screen%20Shot%202017-08-29%20at%202.12.53%20AM.png)
-#### Multiple Graphs
-![notebook-0](https://github.com/Seedarchangel/TuChart/blob/master/Example_Graphs/Screen%20Shot%202017-08-28%20at%209.01.12%20PM.png)
+#### Major Shareholders
+![notebook-0](https://github.com/Seedarchangel/TuChart/blob/master/Example_Graphs/New_Top_10.gif?raw=true)
 #### Drag and Zoom
 ![notebook-0](https://github.com/Seedarchangel/TuChart/blob/master/Example_Graphs/sample.gif)
 
@@ -18,7 +18,7 @@ In your terminal, enter
 
 ```pip install tuchart```
 
-#### Notice：For best plotting experience，please download the latest version = 0.1.2.3
+#### Notice：For best plotting experience，please download the latest version = 0.1.2.5
 
 then, under your tuchart directory, e.g:
 
@@ -50,13 +50,26 @@ Tuchart currently supports：
 * 30 minute average
 
 3. Tick data of individual stocks
-
+4. High frequency data within one day
+5. Top Shareholders
 ## Updates
-0.1.2.3 
-* Added script to save stock list every 12 hours
-* Increased stability
-* Auto-resize Image according to size of the app
-* Added more stock indexes
+
+0.1.2.5
+1. Supports plotting for High frequency data 
+ * 1 minute average
+ * 5 minute average
+ * 15 minute average
+ * 30 minute average
+2. Supports plotting of top shareholders within a year.
+
+0.1.2.4
+* Fixed dependency issues when user has PYQT4 Layer
+
+0.1.2.3
+1. Added script to save stock list every 12 hours
+2. Increased stability
+3. Auto-resize Image according to size of the app
+4. Added more stock indexes
 
 ## Contact:
 Email: rzli2@illinois.edu
