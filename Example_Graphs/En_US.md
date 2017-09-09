@@ -1,6 +1,6 @@
 TuChart
 =================
-TuChart is a plotting tool for the Chinese stock market.
+TuChart is a plotting tool for the Chinese stock market, based on Tushare and Echarts.
 
 
 ## Usage Examples
@@ -14,6 +14,8 @@ TuChart is a plotting tool for the Chinese stock market.
 ![notebook-0](https://github.com/Seedarchangel/TuChart/blob/master/Example_Graphs/sample.gif)
 
 ## Instructions
+Install dependencies
+```pip install tushare, pyecharts==0.2.0```
 In your terminal, enter
 
 ```pip install tuchart```
