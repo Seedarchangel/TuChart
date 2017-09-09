@@ -1,6 +1,7 @@
 TuChart
 =================
 [English Doc](https://github.com/Seedarchangel/TuChart/blob/master/Example_Graphs/En_US.md)
+
 TuChart是一个基于Echarts和Tushare的股票视觉化应用
 ## 使用截图
 #### 个股K线
