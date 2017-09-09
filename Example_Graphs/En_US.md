@@ -55,12 +55,12 @@ Tuchart currently supports：
 ## Updates
 
 0.1.2.5
-1. Supports plotting for High frequency data 
- * 1 minute average
- * 5 minute average
- * 15 minute average
- * 30 minute average
-2. Supports plotting of top shareholders within a year.
+* Supports plotting for High frequency data 
+ 1. 1 minute average
+ 2. 5 minute average
+ 3. 15 minute average
+ 4. 30 minute average
+* Supports plotting of top shareholders within a year.
 
 0.1.2.4
 * Fixed dependency issues when user has PYQT4 Layer
