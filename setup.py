@@ -1,8 +1,7 @@
 # !/usr/bin/env python
 # -*- coding: utf-8 -*-
 
-# Note: To use the 'upload' functionality of this file, you must:
-#   $ pip install twine
+
 
 import codecs
 import os
@@ -18,24 +17,19 @@ URL = 'https://github.com/Seedarchangel/TuChart'
 EMAIL = 'rzli2@illinois.com'
 AUTHOR = 'Rong Zhou Li'
 
-# What packages are required for this module to be executed?
+
 REQUIRED = [
 "pyecharts==0.2.0","tushare","qtpy"
     # 'requests', 'maya', 'records',
 ]
 
-# The rest you shouldn't have to touch too much :)
-# ------------------------------------------------
-# Except, perhaps the License and Trove Classifiers!
+
 
 here = os.path.abspath(os.path.dirname(__file__))
 
-# Import the README and use it as the long-description.
-# Note: this will only work if 'README.rst' is present in your MANFEST.in file!
-#with codecs.open(os.path.join(here, 'README.MD'), encoding='utf-8') as f:
-    #long_description = '\n' + f.read()
 
-# Load the package's __version__.py module as a dictionary.
+
+
 about = {}
 with open(os.path.join(here, NAME, '__version__.py')) as f:
     exec (f.read(), about)
@@ -73,7 +67,6 @@ class PublishCommand(Command):
         sys.exit()
 
 
-# Where the magic happens:
 setup(
     name=NAME,
     version=about['__version__'],
@@ -83,18 +76,12 @@ setup(
     author_email=EMAIL,
     url=URL,
     packages=find_packages(exclude=('tests',)),
-    # If your package is a single module, use this instead of 'packages':
-    # py_modules=['mypackage'],
 
-    # entry_points={
-    #     'console_scripts': ['mycli=mymodule:cli'],
-    # },
     install_requires=REQUIRED,
     include_package_data=True,
     license='MIT',
     classifiers=[
-        # Trove classifiers
-        # Full list: https://pypi.python.org/pypi?%3Aaction=list_classifiers
+      
         'License :: OSI Approved :: MIT License',
         'Programming Language :: Python',
         'Programming Language :: Python :: 2.6',
