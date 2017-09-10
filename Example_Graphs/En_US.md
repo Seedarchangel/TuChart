@@ -13,13 +13,14 @@ TuChart is a plotting tool for the Chinese stock market, based on Tushare and Ec
 #### Drag and Zoom
 ![notebook-0](https://github.com/Seedarchangel/TuChart/blob/master/Example_Graphs/sample.gif)
 
-## Instructions
-Install dependencies
+## How to Use
+First, install dependencies
+
 ```pip install tushare, pyecharts==0.2.0```
 
-In your terminal, enter
-
+To install Tuchart, enter
 ```pip install tuchart```
+in your terminal
 
 #### Notice：For best plotting experience，please download the latest version = 0.1.2.5
 
@@ -37,32 +38,30 @@ Right click to choose the name of stock and type of data you would like to plot.
 
 ![Manual](https://github.com/Seedarchangel/TuChart/blob/master/Example_Graphs/SLYJiZEBeD.gif)
 
-## Supported Datatypes
-Tuchart currently supports：
-1. Raw Stock Data
-* Daily average
-* Weekly average
-* Monthly average
-* 15 minute average
-* 30 minute average
-2. Restoration Data
-* Daily average
-* Weekly average
-* Monthly average
-* 15 minute average
-* 30 minute average
+## Currently Supported Datatypes
+* Raw Stock Data
+  * Daily average
+  * Weekly average
+  * Monthly average
+  * 15 minute average
+  * 30 minute average
+* Restoration Data
+  * Daily average
+  * Weekly average
+  * Monthly average
+  * 15 minute average
+  * 30 minute average
+* Tick data of individual stocks
+* High frequency data within one day
+* Top Shareholders
 
-3. Tick data of individual stocks
-4. High frequency data within one day
-5. Top Shareholders
 ## Updates
-
 0.1.2.5
 * Supports plotting for High frequency data 
- 1. 1 minute average
- 2. 5 minute average
- 3. 15 minute average
- 4. 30 minute average
+  * 1 minute average
+  * 5 minute average
+  * 15 minute average
+  * 30 minute average
 * Supports plotting of top shareholders within a year.
 
 0.1.2.4
