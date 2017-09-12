@@ -1,3 +1,0 @@
-pyecharts==0.2.0
-tushare
-qtpy
