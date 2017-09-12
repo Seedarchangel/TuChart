@@ -53,8 +53,12 @@ Right click to choose the name of stock and type of data you would like to plot.
   * 30 minute average
 * Tick data of individual stocks
 * High frequency data within one day
+
+High frequency data is calculated from tick data of your chosen day. Algorithm: [如何用TICK数据生成分钟线数据](https://mp.weixin.qq.com/s?__biz=MzAwOTgzMDk5Ng==&mid=2650833965&idx=1&sn=e3e74639c068e7a1e41a35bb1decd313&chksm=80adb316b7da3a00de4191d4da6a5a7cab60fa3d282876fcf0b4d6dd8fc234528a316f5aa50a&mpshare=1&scene=1&srcid=090514fJTxEaB4CbnBI85x60&pass_ticket=qA7MkXEYQz2xA0uHwCD8eF43XfYsQMFMTyDT0euW7YFDRhLeVPR8dAxIaK6gxprk#rd)
 * Distribution of Top Shareholders
 
+ Tuchart will return data for top shareholders within your chosen year.
+![Manual](https://github.com/Seedarchangel/TuChart/blob/master/Example_Graphs/Screen%20Shot%202017-09-06%20at%2012.33.55%20AM.png?raw=true)
 ## Updates
 0.1.2.5
 * Supports plotting for High frequency data 
