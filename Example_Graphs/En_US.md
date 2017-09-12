@@ -38,7 +38,7 @@ Right click to choose the name of stock and type of data you would like to plot.
 
 ![Manual](https://github.com/Seedarchangel/TuChart/blob/master/Example_Graphs/SLYJiZEBeD.gif)
 
-## Currently Supported Datatypes
+## Supported Datatypes
 * Raw Stock Data
   * Daily average
   * Weekly average
@@ -53,7 +53,7 @@ Right click to choose the name of stock and type of data you would like to plot.
   * 30 minute average
 * Tick data of individual stocks
 * High frequency data within one day
-* Top Shareholders
+* Distribution of Top Shareholders
 
 ## Updates
 0.1.2.5
@@ -70,8 +70,8 @@ Right click to choose the name of stock and type of data you would like to plot.
 0.1.2.3
 * Added script to save stock list every 12 hours
 * Increased stability
-* Auto-resize Image according to size of the app
-* Added more stock indexes
+* Auto-resize image according to size of the app
+* Added market indexes
 
 ## Contact:
 Email: rzli2@illinois.edu
