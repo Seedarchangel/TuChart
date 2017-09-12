@@ -1,6 +1,6 @@
 TuChart
 =================
-TuChart is a plotting tool for the Chinese stock market, based on Tushare and Echarts.
+TuChart is a visualization tool for the Chinese stock market, based on Tushare and Echarts.
 
 
 ## Usage Examples
