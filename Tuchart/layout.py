@@ -52,15 +52,16 @@ class Ui_MainWindow(object):
         self.dateEdit = QtWidgets.QLabel(self.centralwidget)
         self.dateEdit.setObjectName("dateEdit")
         self.horizontalLayout_4.addWidget(self.dateEdit)
+
+        self.staDate_label = QtWidgets.QLabel(self.centralwidget)
+        self.staDate_label.setObjectName("staDate_label")
+        self.horizontalLayout_4.addWidget(self.staDate_label)
+        self.staDate_label.setText("开始时间")
+
         self.label_2 = QtWidgets.QLabel(self.centralwidget)
         self.label_2.setObjectName("label_2")
         self.horizontalLayout_4.addWidget(self.label_2)
         self.label_2.setText("结束时间")
-
-        self.staDate_label = QtWidgets.QLabel(self.centralwidget)
-        self.staDate_label.setObjectName("staDate_label")
-        self.staDate_label.setText("开始时间")
-        self.horizontalLayout_4.addWidget(self.staDate_label)
 
         self.gridLayout.addLayout(self.horizontalLayout_4, 5, 0, 1, 1)
         self.horizontalLayout_5 = QtWidgets.QHBoxLayout()
