@@ -57,12 +57,22 @@ class MyUi(QMainWindow):
         #series = pd.read_json(cwd + "\\class.json")
         #series = ts.get_industry_classified()
         series = pd.DataFrame(series)
-        curdate = time.strftime("%Y/%m/%d") #gets current time to put into dateedit
+
+        curdate = time.strftime("%Y/%m/%d")  # gets current time to put into dateedit
+        curdateQ = QDate.fromString(curdate,"yyyy/MM/dd")
+
         dateobj = datetime.strptime(curdate, "%Y/%m/%d")#converts to datetime object
+
         past = dateobj - timedelta(days = 7)  #minus a week to start date
         pasttime = datetime.strftime(past, "%Y/%m/%d")
-        QPast = QDate.fromString(pasttime,"yyyy/MM/dd") #convert to qtime so that widget accepts the values
-        Qcurdate = QDate.fromString(curdate,"yyyy/MM/dd")
+        pastQ = QDate.fromString(pasttime,"yyyy/MM/dd") #convert to qtime so that widget accepts the values
+
+
+
+        pastL = dateobj - timedelta(days=30)  # minus a month to start date
+        pasttimeL = datetime.strftime(pastL, "%Y/%m/%d")
+        pastQL = QDate.fromString(pasttimeL, "yyyy/MM/dd")
+
 
         np_indexes = np.array([['sh', '上证指数', '大盘指数'],
                                ['sz', '深证成指', '大盘指数'],
@@ -115,8 +125,8 @@ class MyUi(QMainWindow):
             self.ui.label_2.setSizePolicy(retain_size)
         except AttributeError:
             print("No PYQT5 Binding! Widgets might be deformed")
-        self.ui.dateEdit.setDate(QPast)
-        self.ui.dateEdit_2.setDate(Qcurdate)#populate widgets
+        self.ui.dateEdit.setDate(pastQL)
+        self.ui.dateEdit_2.setDate(curdateQ)#populate widgets
         self.ui.dateEdit.setCalendarPopup(True)
         self.ui.dateEdit_2.setCalendarPopup(True)
         self.ui.comboBox.addItems(["D", "W", "M", "5", "15", "30", "60"])
@@ -124,7 +134,7 @@ class MyUi(QMainWindow):
         self.ui.treeWidget_2.setContextMenuPolicy(Qt.CustomContextMenu)
         self.ui.treeWidget_2.customContextMenuRequested.connect(self.openWidgetMenu)
         #self.ui.toolbutton.clicked.connect(lambda action: self.graphmerge(action, CombineKeyword))
-        self.ui.combobox.currentIndexChanged.connect(self.modifycombo)
+        self.ui.combobox.currentIndexChanged.connect(lambda: self.modifycombo(pastQL,pastQ))
 
     def init_treeWidget(self, list1, series):
 
@@ -175,10 +185,11 @@ class MyUi(QMainWindow):
         self.ui.treeWidget.expandToDepth(0)
 
 
-    def modifycombo(self):
+    def modifycombo(self,pastQL,pastQ):
         if self.ui.combobox.currentText()==u"复权": #if 复权 is selected, clear all existing queries to avoid value conflict
             self.ui.label_2.show()
             self.ui.dateEdit_2.show()
+            self.ui.dateEdit.setDate(pastQL)
             self.ui.comboBox.show()
             self.ui.comboBox.clear()
             self.ui.comboBox.addItems(["hfq", "qfq"])
@@ -186,6 +197,7 @@ class MyUi(QMainWindow):
         if self.ui.combobox.currentText()==u"K线":
             self.ui.label_2.show()
             self.ui.dateEdit_2.show()
+            self.ui.dateEdit.setDate(pastQL)
             self.ui.comboBox.show()
             self.ui.comboBox.clear()
             self.ui.comboBox.addItems(["D", "W", "M", "5", "15", "30", "60"])#same as above
@@ -194,6 +206,7 @@ class MyUi(QMainWindow):
             self.ui.comboBox.hide()
             self.ui.label_2.hide()
             self.ui.dateEdit_2.hide()
+            self.ui.dateEdit.setDate(pastQ)
             self.ui.treeWidget_2.clear()
         if self.ui.combobox.currentText()==u"历史分钟":
             self.ui.comboBox.show()
@@ -201,6 +214,7 @@ class MyUi(QMainWindow):
             self.ui.comboBox.addItems(["1min","5min","15min","30min","60min"])
             self.ui.label_2.hide()
             self.ui.dateEdit_2.hide()
+            self.ui.dateEdit.setDate(pastQ)
             self.ui.treeWidget_2.clear()
 
         if self.ui.combobox.currentText()==u"十大股东":
