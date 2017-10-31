@@ -29,7 +29,7 @@ class MyUi(QMainWindow):
             with open("time","r") as outfile:#reads current time
                 history = cPickle.load(outfile)
             if (datetime.now()-history).total_seconds()<43200: #measures if time elapse>12 hours
-                print("Less than 12 hours. Loading previously saved Json...")
+                print("Less than 12 hours. Loading previously saved Pickle...")
                 #with open("time","w") as infile: #update time
                     #cPickle.dump(datetime.now(),infile)
 
@@ -137,10 +137,7 @@ class MyUi(QMainWindow):
         self.ui.combobox.currentIndexChanged.connect(lambda: self.modifycombo(pastQL,pastQ))
 
     def init_treeWidget(self, list1, series):
-
         self.ui.treeWidget.clear()
-        self.ui.treeWidget.headerItem().setText(0, "历史综合数据")
-
         for j in list1:
             parent = QTreeWidgetItem(self.ui.treeWidget)  #populate treewidget with names
             parent.setText(0,j)
@@ -157,7 +154,6 @@ class MyUi(QMainWindow):
         #self.ui.treeWidget.itemDoubleClicked.connect(self.onClickItem) #Display Collection items
 
     def code_sort_tree(self, companies):
-        self.ui.treeWidget.headerItem().setText(0, "历史综合数据")
         self.ui.treeWidget.clear()
         sorted_comps = companies.sort_values(["code"])
         code_list = sorted_comps["code"].tolist()
