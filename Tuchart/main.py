@@ -59,7 +59,7 @@ class MyUi(QMainWindow):
         series = pd.DataFrame(series)
         curdate = time.strftime("%Y/%m/%d") #gets current time to put into dateedit
         dateobj = datetime.strptime(curdate, "%Y/%m/%d")#converts to datetime object
-        past = dateobj - timedelta(days = 30)  #minus a month to start date
+        past = dateobj - timedelta(days = 7)  #minus a week to start date
         pasttime = datetime.strftime(past, "%Y/%m/%d")
         QPast = QDate.fromString(pasttime,"yyyy/MM/dd") #convert to qtime so that widget accepts the values
         Qcurdate = QDate.fromString(curdate,"yyyy/MM/dd")
