@@ -145,7 +145,7 @@ class Ui_MainWindow(object):
         MainWindow.setStatusBar(self.statusbar)
         self.action123 = QtWidgets.QAction(MainWindow)
         self.action123.setObjectName("action123")
-        MainWindow.setWindowTitle("shares")
+        MainWindow.setWindowTitle("Tuchart")
         self.treeWidget_2.headerItem().setText(0,"绘图项")
         font = QtGui.QFont("Times", 12, QtGui.QFont.Bold)
         self.treeWidget_2.setFont(font)
