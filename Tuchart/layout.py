@@ -1,157 +1,372 @@
-# -*- coding: utf-8 -*-
+#-*- coding:utf-8 -*-
+from __future__ import print_function
+import os,sys,sip,time
+from datetime import datetime,timedelta
+from qtpy.QtWidgets import QTreeWidgetItem,QMenu,QApplication,QAction,QMainWindow
+from qtpy import QtGui,QtWidgets
+from qtpy.QtCore import Qt,QUrl,QDate
+from Graph import graphpage
+from layout import Ui_MainWindow
+from pandas import DataFrame as df
+import pandas as pd
+import tushare as ts
+import cPickle
+import numpy as np
+import json
+import warnings
+warnings.filterwarnings("ignore")
+list1 = []
 
-# Form implementation generated from reading ui file 'advanced_ui.ui'
-#
-# Created by: PyQt5 UI code generator 5.9
-#
-# WARNING! All changes made in this file will be lost!
 
-from qtpy import QtCore, QtWidgets,QtGui
-from qtpy.QtWebEngineWidgets import QWebEngineView
+class MyUi(QMainWindow):
+    def __init__(self):
+        super(MyUi, self).__init__()
+        self.ui = Ui_MainWindow()
+        self.ui.setupUi(self)
+        cwd = os.getcwd()
+        cwd = str(cwd)
+        if os.path.isfile(cwd+"/time"):
+            with open("time","r") as outfile:#reads current time
+                history = cPickle.load(outfile)
+            if (datetime.now()-history).total_seconds()<43200: #measures if time elapse>12 hours
+                print("Less than 12 hours. Loading previously saved Pickle...")
+                #with open("time","w") as infile: #update time
+                    #cPickle.dump(datetime.now(),infile)
 
-try:
-    _fromUtf8 = QtCore.QString.fromUtf8
-except AttributeError:
-    def _fromUtf8(s):
-        return s
+            else:
+                print("More than 12 hours. Updating Pickle...")
+                data = ts.get_industry_classified()
+                with open("class","w+") as outfile:
+                    cPickle.dump(data,outfile)
+                now = datetime.now()
+                with open("time", "w+") as outfile: #update time
+                    cPickle.dump(now, outfile)
 
-try:
-    _encoding = QtWidgets.QApplication.UnicodeUTF8
-    def _translate(context, text, disambig):
-        return QtWidgets.QApplication.translate(context, text, disambig, _encoding)
-except AttributeError:
-    def _translate(context, text, disambig):
-        return QtWidgets.QApplication.translate(context, text, disambig)
+        else:
+            print("No Pickle found!") #If this is first time using tuchart in this directory
+            data = df()
+            data = ts.get_industry_classified()
+            with open('class', 'w+') as outfile: #records pickle
+                cPickle.dump(data, outfile)
+            now = datetime.now()
+            with open("time", "w+") as outfile:
+                cPickle.dump(now,outfile)
 
-class Ui_MainWindow(object):
-    def setupUi(self, MainWindow):
-        MainWindow.setObjectName("Ui_MainWindow")
-        MainWindow.resize(1107, 663)
-        self.centralwidget = QtWidgets.QWidget(MainWindow)
-        self.centralwidget.setObjectName("centralwidget")
-        self.gridLayout = QtWidgets.QGridLayout(self.centralwidget)
-        self.gridLayout.setObjectName("gridLayout")
-        self.treeWidget_2 = QtWidgets.QTreeWidget(self.centralwidget)
-        self.treeWidget_2.setObjectName("treeWidget_2")
-        self.gridLayout.addWidget(self.treeWidget_2, 9, 0, 1, 1)
-        self.treeWidget = QtWidgets.QTreeWidget(self.centralwidget)
-        self.treeWidget.setObjectName("treeWidget")
-        self.treeWidget.headerItem().setText(0, "历史综合数据--右键菜单添加")
-        self.gridLayout.addWidget(self.treeWidget, 3, 0, 1, 1)
-        self.horizontalLayout_3 = QtWidgets.QHBoxLayout()
-        self.horizontalLayout_3.setObjectName("horizontalLayout_3")
-        self.combobox = QtWidgets.QComboBox(self.centralwidget)
-        self.combobox.setObjectName("combobox")
-        self.horizontalLayout_3.addWidget(self.combobox)
-        self.combobox.addItems(["K线", "复权", "分笔数据", "历史分钟", "十大股东"])
-        spacerItem = QtWidgets.QSpacerItem(40, 20, QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Minimum)
-        self.horizontalLayout_3.addItem(spacerItem)
-        self.gridLayout.addLayout(self.horizontalLayout_3, 0, 0, 1, 1)
-        self.horizontalLayout_4 = QtWidgets.QHBoxLayout()
-        self.horizontalLayout_4.setObjectName("horizontalLayout_4")
-        self.dateEdit = QtWidgets.QLabel(self.centralwidget)
-        self.dateEdit.setObjectName("dateEdit")
-        self.horizontalLayout_4.addWidget(self.dateEdit)
+        with open("class", "r") as infile:  # reads current time
+            series = cPickle.load(infile)
+        #series = pd.read_json(cwd + "\\class.json")
+        #series = ts.get_industry_classified()
+        series = pd.DataFrame(series)
 
-        self.staDate_label = QtWidgets.QLabel(self.centralwidget)
-        self.staDate_label.setObjectName("staDate_label")
-        self.horizontalLayout_4.addWidget(self.staDate_label)
-        self.staDate_label.setText("开始时间")
+        curdate = time.strftime("%Y/%m/%d")  # gets current time to put into dateedit
+        curdateQ = QDate.fromString(curdate,"yyyy/MM/dd")
 
-        self.label_2 = QtWidgets.QLabel(self.centralwidget)
-        self.label_2.setObjectName("label_2")
-        self.horizontalLayout_4.addWidget(self.label_2)
-        self.label_2.setText("结束时间")
+        dateobj = datetime.strptime(curdate, "%Y/%m/%d")#converts to datetime object
 
-        self.gridLayout.addLayout(self.horizontalLayout_4, 5, 0, 1, 1)
-        self.horizontalLayout_5 = QtWidgets.QHBoxLayout()
-        self.horizontalLayout_5.setObjectName("horizontalLayout_5")
-        self.init_category_btn = QtWidgets.QPushButton(self.centralwidget)
-        self.init_category_btn.setObjectName("init_category_btn")
-        self.horizontalLayout_5.addWidget(self.init_category_btn)
-        self.init_code_btn = QtWidgets.QPushButton(self.centralwidget)
-        self.init_code_btn.setObjectName("init_code_btn")
-        self.horizontalLayout_5.addWidget(self.init_code_btn)
-        self.gridLayout.addLayout(self.horizontalLayout_5, 2, 0, 1, 1)
-        self.horizontalLayout = QtWidgets.QHBoxLayout()
-        self.horizontalLayout.setObjectName("horizontalLayout")
-        self.label = QtWidgets.QLabel(self.centralwidget)
-        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Fixed, QtWidgets.QSizePolicy.Preferred)
-        sizePolicy.setHorizontalStretch(0)
-        sizePolicy.setVerticalStretch(0)
-        sizePolicy.setHeightForWidth(self.label.sizePolicy().hasHeightForWidth())
-        self.label.setSizePolicy(sizePolicy)
-        self.label.setObjectName("label")
-        self.horizontalLayout.addWidget(self.label)
-        self.search_lineEdit = QtWidgets.QLineEdit(self.centralwidget)
-        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Fixed, QtWidgets.QSizePolicy.Fixed)
-        sizePolicy.setHorizontalStretch(0)
-        sizePolicy.setVerticalStretch(0)
-        sizePolicy.setHeightForWidth(self.search_lineEdit.sizePolicy().hasHeightForWidth())
-        self.search_lineEdit.setSizePolicy(sizePolicy)
-        self.search_lineEdit.setMaxLength(20)
-        self.search_lineEdit.setObjectName("search_lineEdit")
-        self.horizontalLayout.addWidget(self.search_lineEdit)
-        self.search_btn = QtWidgets.QPushButton(self.centralwidget)
-        self.search_btn.setObjectName("search_btn")
-        self.horizontalLayout.addWidget(self.search_btn)
-        self.gridLayout.addLayout(self.horizontalLayout, 1, 0, 1, 1)
-        self.horizontalLayout_7 = QtWidgets.QHBoxLayout()
-        self.horizontalLayout_7.setObjectName("horizontalLayout_7")
-        self.commandLinkButton = QtWidgets.QCommandLinkButton(self.centralwidget)
-        font = QtGui.QFont()
-        font.setFamily("Segoe UI")
-        font.setPointSize(11)
-        self.commandLinkButton.setFont(font)
-        self.commandLinkButton.setObjectName("commandLinkButton")
-        self.horizontalLayout_7.addWidget(self.commandLinkButton)
-        self.gridLayout.addLayout(self.horizontalLayout_7, 7, 0, 1, 1)
-        self.horizontalLayout_2 = QtWidgets.QHBoxLayout()
-        self.horizontalLayout_2.setObjectName("horizontalLayout_2")
-        self.dateEdit = QtWidgets.QDateEdit(self.centralwidget)
-        self.dateEdit.setObjectName("dateEdit")
-        self.horizontalLayout_2.addWidget(self.dateEdit)
-        self.dateEdit_2 = QtWidgets.QDateEdit(self.centralwidget)
-        self.dateEdit_2.setObjectName("dateEdit_2")
-        self.horizontalLayout_2.addWidget(self.dateEdit_2)
-        self.gridLayout.addLayout(self.horizontalLayout_2, 6, 0, 1, 1)
-        self.widget = QWebEngineView(self.centralwidget)
-        self.widget.setEnabled(True)
-        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Expanding)
-        sizePolicy.setHorizontalStretch(0)
-        sizePolicy.setVerticalStretch(0)
+        past = dateobj - timedelta(days = 7)  #minus a week to start date
+        pasttime = datetime.strftime(past, "%Y/%m/%d")
+        pastQ = QDate.fromString(pasttime,"yyyy/MM/dd") #convert to qtime so that widget accepts the values
 
-        sizePolicy.setHeightForWidth(self.widget.sizePolicy().hasHeightForWidth())
-        self.widget.setSizePolicy(sizePolicy)
-        self.widget.setObjectName(_fromUtf8("widget"))
 
-        self.gridLayout.addWidget(self.widget, 0, 1, 10, 1)
-        self.horizontalLayout_8 = QtWidgets.QHBoxLayout()
-        self.horizontalLayout_8.setObjectName("horizontalLayout_8")
-        self.interval_label = QtWidgets.QLabel(self.centralwidget)
-        self.interval_label.setObjectName("interval_label")
-        self.horizontalLayout_8.addWidget(self.interval_label)
-        self.comboBox = QtWidgets.QComboBox(self.centralwidget)
-        self.comboBox.setObjectName("comboBox")
-        self.horizontalLayout_8.addWidget(self.comboBox)
-        self.gridLayout.addLayout(self.horizontalLayout_8, 4, 0, 1, 1)
-        MainWindow.setCentralWidget(self.centralwidget)
-        self.menubar = QtWidgets.QMenuBar(MainWindow)
-        self.menubar.setGeometry(QtCore.QRect(0, 0, 1107, 23))
-        self.menubar.setObjectName("menubar")
-        MainWindow.setMenuBar(self.menubar)
-        self.statusbar = QtWidgets.QStatusBar(MainWindow)
-        self.statusbar.setObjectName("statusbar")
-        MainWindow.setStatusBar(self.statusbar)
-        self.action123 = QtWidgets.QAction(MainWindow)
-        self.action123.setObjectName("action123")
-        MainWindow.setWindowTitle("Tuchart")
-        self.treeWidget_2.headerItem().setText(0,"绘图项")
-        font = QtGui.QFont("Times", 12, QtGui.QFont.Bold)
-        self.treeWidget_2.setFont(font)
-        self.init_category_btn.setText("分类显示股票")
-        self.init_code_btn.setText("按编号显示股票")
-        self.label.setText("搜索股票")
-        self.search_btn.setText("搜索")
-        self.commandLinkButton.setText( "开始绘图")
-        self.interval_label.setText("每条线时间间隔")
+
+        pastL = dateobj - timedelta(days=30)  # minus a month to start date
+        pasttimeL = datetime.strftime(pastL, "%Y/%m/%d")
+        pastQL = QDate.fromString(pasttimeL, "yyyy/MM/dd")
+
+
+        np_indexes = np.array([['sh', '上证指数', '大盘指数'],
+                               ['sz', '深证成指', '大盘指数'],
+                               ['hs300', '沪深300指数', '大盘指数'],
+                               ['sz50', '上证50', '大盘指数'],
+                               ['zxb', '中小板', '大盘指数'],
+                               ['cyb', '创业板', '大盘指数']])
+        indexes = df(data=np_indexes,
+                     index=range(5000, 5006),
+                     columns=["code", "name", "c_name"])
+        series = indexes.append(series)
+        list1_bfr = series["c_name"].tolist()  #Get industry categories. Filters out redundant ones
+        list1 = list(set(list1_bfr))
+        list1.sort(key=list1_bfr.index)
+        #w = database()
+        #zsparent = QTreeWidgetItem(self.ui.treeWidget)
+        #zsparent.setText(0,"股票指数")
+        #zsnames =["上证指数-sh","深圳成指-sz","沪深300指数-hs300","上证50-"]
+
+        self.init_treeWidget(list1,series)
+
+        self.ui.treeWidget.setContextMenuPolicy(Qt.CustomContextMenu)
+        self.ui.treeWidget.customContextMenuRequested.connect(self.openMenu)
+
+        #self.ui.webView.setGeometry(QtCore.QRect(0, 30,1550, 861))
+        file_path = os.path.abspath(os.path.join(os.path.dirname(__file__), "render.html")) #path to read html file
+        local_url = QUrl.fromLocalFile(file_path)
+        self.ui.webView.load(local_url)
+        #self.ui.commandLinkButton.setFixedSize(50, 50)
+
+
+        self.ui.search_btn.clicked.connect(lambda: self.search_comp(series))
+        self.ui.init_code_btn.clicked.connect(lambda: self.code_sort_tree(series))
+        self.ui.init_category_btn.clicked.connect(lambda: self.init_treeWidget(list1, series))
+
+        self.ui.commandLinkButton.clicked.connect(self.classify)  #when the arrow button is clicked, trigger events
+
+
+        #self.ui.commandLinkButton.clicked.connect(lambda action: self.classify(action, self.ui.treewidget))
+        #  QSizePolicy
+        try:
+            retain_size = self.ui.dateEdit_2.sizePolicy()
+            retain_size.setRetainSizeWhenHidden(True)
+            self.ui.dateEdit_2.setSizePolicy(retain_size)
+            retain_size = self.ui.comboBox.sizePolicy()
+            retain_size.setRetainSizeWhenHidden(True)
+            self.ui.comboBox.setSizePolicy(retain_size)
+            retain_size = self.ui.label_2.sizePolicy()
+            retain_size.setRetainSizeWhenHidden(True)
+            self.ui.label_2.setSizePolicy(retain_size)
+        except AttributeError:
+            print("No PYQT5 Binding! Widgets might be deformed")
+        self.ui.dateEdit.setDate(pastQL)
+        self.ui.dateEdit_2.setDate(curdateQ)#populate widgets
+        self.ui.dateEdit.setCalendarPopup(True)
+        self.ui.dateEdit_2.setCalendarPopup(True)
+        self.ui.comboBox.addItems(["D", "W", "M", "5", "15", "30", "60"])
+        self.ui.treeWidget_2.setDragDropMode(self.ui.treeWidget_2.InternalMove)
+        self.ui.treeWidget_2.setContextMenuPolicy(Qt.CustomContextMenu)
+        self.ui.treeWidget_2.customContextMenuRequested.connect(self.openWidgetMenu)
+        #self.ui.toolbutton.clicked.connect(lambda action: self.graphmerge(action, CombineKeyword))
+        self.ui.combobox.currentIndexChanged.connect(lambda: self.modifycombo(pastQL,pastQ))
+
+    def init_treeWidget(self, list1, series):
+        self.ui.treeWidget.clear()
+        for j in list1:
+            parent = QTreeWidgetItem(self.ui.treeWidget)  #populate treewidget with names
+            parent.setText(0,j)
+            var = series.loc[series["c_name"] == j]
+            list2 = var["code"].tolist()
+            name = var["name"].tolist()
+            #var = showcollection(i) #Display database items
+            for idx,val in enumerate(list2):
+                child = QTreeWidgetItem(parent)
+                child.setText(0, name[idx]+"-"+str(val))
+                #for i in Drag:
+                    #grandson = QTreeWidgetItem(child)     #Commented out because increases program response time
+                    #grandson.setText(0, i)
+        #self.ui.treeWidget.itemDoubleClicked.connect(self.onClickItem) #Display Collection items
+
+    def code_sort_tree(self, companies):
+        self.ui.treeWidget.clear()
+        sorted_comps = companies.sort_values(["code"])
+        code_list = sorted_comps["code"].tolist()
+        name_list = sorted_comps["name"].tolist()
+        shares_parent = QTreeWidgetItem(self.ui.treeWidget)
+        shares_parent.setText(0, "个股行情")
+        for idx, val in enumerate(code_list):
+            child = QTreeWidgetItem(shares_parent)
+            child.setText(0, name_list[idx] + "-" + str(val))
+        self.ui.treeWidget.expandToDepth(0)
+
+    def search_comp(self, companies):
+        self.ui.treeWidget.clear()
+        text = self.ui.search_lineEdit.text()
+        filtered_codes = companies[companies['code'].str.contains(text)]
+        filtered_names = companies[companies['name'].str.contains(text)]
+        filtered_comps = filtered_codes.append(filtered_names)
+        code_list = filtered_comps["code"].tolist()
+        name_list = filtered_comps["name"].tolist()
+        parent = QTreeWidgetItem(self.ui.treeWidget)
+        parent.setText(0, "搜索结果")
+        for idx, val in enumerate(code_list):
+            child = QTreeWidgetItem(parent)
+            child.setText(0, name_list[idx] + "-" + str(val))
+        self.ui.treeWidget.expandToDepth(0)
+
+
+    def modifycombo(self,pastQL,pastQ):
+        if self.ui.combobox.currentText()==u"复权": #if 复权 is selected, clear all existing queries to avoid value conflict
+            self.ui.label_2.show()
+            self.ui.dateEdit_2.show()
+            self.ui.dateEdit.setDate(pastQL)
+            self.ui.comboBox.show()
+            self.ui.comboBox.clear()
+            self.ui.comboBox.addItems(["hfq", "qfq"])
+            self.ui.treeWidget_2.clear()
+        if self.ui.combobox.currentText()==u"K线":
+            self.ui.label_2.show()
+            self.ui.dateEdit_2.show()
+            self.ui.dateEdit.setDate(pastQL)
+            self.ui.comboBox.show()
+            self.ui.comboBox.clear()
+            self.ui.comboBox.addItems(["D", "W", "M", "5", "15", "30", "60"])#same as above
+            self.ui.treeWidget_2.clear()
+        if self.ui.combobox.currentText()==u"分笔数据":
+            self.ui.comboBox.hide()
+            self.ui.label_2.hide()
+            self.ui.dateEdit_2.hide()
+            self.ui.dateEdit.setDate(pastQ)
+            self.ui.treeWidget_2.clear()
+        if self.ui.combobox.currentText()==u"历史分钟":
+            self.ui.comboBox.show()
+            self.ui.comboBox.clear()
+            self.ui.comboBox.addItems(["1min","5min","15min","30min","60min"])
+            self.ui.label_2.hide()
+            self.ui.dateEdit_2.hide()
+            self.ui.dateEdit.setDate(pastQ)
+            self.ui.treeWidget_2.clear()
+
+        if self.ui.combobox.currentText()==u"十大股东":
+            self.ui.comboBox.hide()
+            self.ui.label_2.hide()
+            self.ui.dateEdit_2.hide()
+            self.ui.treeWidget_2.clear()
+
+    def openMenu(self,position):
+        indexes = self.ui.treeWidget.selectedIndexes()
+        item = self.ui.treeWidget.itemAt(position)
+        db_origin = ""
+        #if item.parent():
+         #   db_origin = item.parent().text(0)
+        collec = str(item.text(0).encode("utf-8"))
+        if len(indexes) > 0:
+            level = 0
+            index = indexes[0]
+            while index.parent().isValid():
+                index = index.parent()
+                level = level + 1
+            menu = QMenu()
+            #print((collec, db_origin))
+            if level ==0:
+                pass
+            else:
+                #keyarray = GetKeys(collec, db_origin)
+                #if "Open" in keyarray:
+                if self.ui.combobox.currentText()==u"K线":
+                    menu.addAction(QAction("Kline", menu, checkable=True))
+                    menu.addAction(QAction("Open", menu, checkable=True))
+                    menu.addAction(QAction("Close", menu, checkable=True))#open up different menu with different kind of graphs
+                    menu.addAction(QAction("High", menu, checkable=True))
+                    menu.addAction(QAction("Low", menu, checkable=True))
+                    menu.addAction(QAction("Volume", menu, checkable=True))
+                    #menu.addAction(QAction("P_change", menu, checkable=True))
+                    #menu.addAction(QAction("Turnover",menu,checkable=True))
+                if self.ui.combobox.currentText()==u"复权":
+                    menu.addAction(QAction("Kline", menu, checkable=True))
+                    menu.addAction(QAction("Open", menu, checkable=True))
+                    menu.addAction(QAction("Close", menu, checkable=True))
+                    menu.addAction(QAction("High", menu, checkable=True))
+                    menu.addAction(QAction("Low", menu, checkable=True))
+                    menu.addAction(QAction("Volume", menu, checkable=True))
+                    menu.addAction(QAction("Amount", menu, checkable=True))
+                if self.ui.combobox.currentText()==u"分笔数据":
+                    menu.addAction(QAction("分笔", menu, checkable=True))
+                if self.ui.combobox.currentText()==u"历史分钟":
+                    menu.addAction(QAction("Kline", menu, checkable=True))
+                    menu.addAction(QAction("Open", menu, checkable=True))
+                    menu.addAction(QAction("Close", menu, checkable=True))
+                    menu.addAction(QAction("High", menu, checkable=True))
+                    menu.addAction(QAction("Low", menu, checkable=True))
+                    menu.addAction(QAction("Volume", menu, checkable=True))
+                    menu.addAction(QAction("Amount", menu, checkable=True))
+                if self.ui.combobox.currentText()==u"十大股东":
+                    menu.addAction(QAction("季度饼图", menu, checkable=True))
+                    #menu.addAction(QAction("持股比例", menu, checkable=True))
+                #for g in keyarray:
+                #menu.addAction(QAction(g, menu, checkable=True))
+        menu.triggered.connect(lambda action: self.methodSelected(action, collec))
+        menu.exec_(self.ui.treeWidget.viewport().mapToGlobal(position))
+
+    def methodSelected(self, action, collec):
+        # print(action.text()) #Choice
+        # if (self.ui.treewidget.count() == 5):
+        #   self.ui.label.setText("Maximum number of queries")
+        #   return
+        # self.ui.label.setText("")
+        Choice = action.text()
+        Stock = collec
+        # print(collec)  #Stock Name
+        # print(db_origin)  #DataBase name
+        # list1 = [self.tr(Stock+"-"+Choice+"-"+db_origin)]
+        # self.ui.treewidget.addItems(list1)
+        parent = QTreeWidgetItem(self.ui.treeWidget_2)
+        parent.setText(0, Stock.decode("utf-8") + "-" + Choice)
+
+
+    def openWidgetMenu(self,position):
+        indexes = self.ui.treeWidget_2.selectedIndexes()
+        item = self.ui.treeWidget_2.itemAt(position)
+        if item == None:
+            return
+        #item = self.ui.listWidget.itemAt(position)
+        if len(indexes) > 0:
+            menu = QMenu()
+            menu.addAction(QAction("Delete", menu,checkable = True))#This function is perhaps useless
+            #menu.triggered.connect(self.eraseItem)
+            item = self.ui.treeWidget_2.itemAt(position)
+            #collec = str(item.text())
+            menu.triggered.connect(lambda action: self.ListMethodSelected(action, item))
+        menu.exec_(self.ui.treeWidget_2.viewport().mapToGlobal(position))
+
+    def ListMethodSelected(self, action, item):
+        if action.text() == "Delete":
+            self.eraseItem()
+        if action.text() == "Combine":
+            global CombineKeyword
+            collec = str(item.text())
+            CombineKeyword.append(collec)#Useless function(maybe?)
+            list1 = [self.tr(collec)]
+            self.ui.listwidget.addItems(list1)
+            self.eraseItem()
+
+    def eraseItem(self):
+        for x in self.ui.treeWidget_2.selectedItems():#delete with write click menu
+            #item = self.ui.treewidget.takeItem(self.ui.treewidget.currentRow())
+            sip.delete(x)
+            #item.delete
+
+    def classify(self, folder):
+        items = []
+        startdate = self.ui.dateEdit.date()
+        startdate = startdate.toPyDate()
+        startdate = startdate.strftime("%Y/%m/%d")#converts date from dateedit to tushare readable date
+        enddate = self.ui.dateEdit_2.date()
+        enddate = enddate.toPyDate()
+        enddate = enddate.strftime("%Y/%m/%d")
+        option = self.ui.comboBox.currentText()
+        option = str(option)
+        #if (self.ui.treewidget) == 0:
+            #self.ui.label.setText("Need to select at least one query")
+            #return
+        root = self.ui.treeWidget_2.invisibleRootItem()# This is for iterating child items
+        child_count = root.childCount()
+        if child_count==0:
+            return
+        for i in range(child_count):
+            item = root.child(i)
+            text = item.text(0)#'stock_name'+'-' +action
+            items.append(text)
+        labels = [k for k in items]
+        items = ([x.encode("utf-8") for x in labels])
+        width = self.ui.webView.width()#give width and height of user's screen so that graphs can be generated with dynamic size
+        height = self.ui.webView.height()
+        graphpage(labels, startdate,enddate,option,width, height)#labels:复权ork线or分笔 option:hfq, qfq or 15, 30, D, etc
+        self.ui.webView.reload()#refreshes webengine
+        self.ui.webView.repaint()
+        self.ui.webView.update()
+
+    def graphmerge(self, combineKeyword):
+        sth = ""
+        for i in combineKeyword:
+            if sth == "":
+                sth = sth + i
+            else :
+                sth = sth + "\n" + "&"+ "-"+i
+        list1 = sth
+        return sth
+        global CombineKeyword
+        CombineKeyword = []
+        self.ui.listwidget.clear()  #combine stuff so that different graphs can be drawn together
+
+
+app = QApplication(sys.argv)
+w = MyUi()
+w.show()
+sys.exit(app.exec_())
