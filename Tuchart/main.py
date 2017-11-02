@@ -183,27 +183,29 @@ class MyUi(QMainWindow):
             self.ui.label_2.show()
             self.ui.dateEdit_2.show()
             self.ui.dateEdit.setDate(pastQL)
+            self.ui.interval_label.show()
             self.ui.comboBox.show()
             self.ui.comboBox.clear()
             self.ui.comboBox.addItems(["hfq", "qfq"])
             self.ui.treeWidget_2.clear()
-
-
         if self.ui.combobox.currentText()==u"K线":
             self.ui.label_2.show()
             self.ui.dateEdit_2.show()
             self.ui.dateEdit.setDate(pastQL)
+            self.ui.interval_label.show()
             self.ui.comboBox.show()
             self.ui.comboBox.clear()
             self.ui.comboBox.addItems(["D", "W", "M", "5", "15", "30", "60"])#same as above
             self.ui.treeWidget_2.clear()
         if self.ui.combobox.currentText()==u"分笔数据":
+            self.ui.interval_label.hide()
             self.ui.comboBox.hide()
             self.ui.label_2.hide()
             self.ui.dateEdit_2.hide()
             self.ui.dateEdit.setDate(pastQ)
             self.ui.treeWidget_2.clear()
         if self.ui.combobox.currentText()==u"历史分钟":
+            self.ui.interval_label.hide()
             self.ui.comboBox.show()
             self.ui.comboBox.clear()
             self.ui.comboBox.addItems(["1min","5min","15min","30min","60min"])
@@ -211,8 +213,8 @@ class MyUi(QMainWindow):
             self.ui.dateEdit_2.hide()
             self.ui.dateEdit.setDate(pastQ)
             self.ui.treeWidget_2.clear()
-
         if self.ui.combobox.currentText()==u"十大股东":
+            self.ui.interval_label.hide()
             self.ui.comboBox.hide()
             self.ui.label_2.hide()
             self.ui.dateEdit_2.hide()
