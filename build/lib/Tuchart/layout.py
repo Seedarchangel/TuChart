@@ -230,4 +230,3 @@ class Ui_MainWindow(object):
         self.treeWidget_2.headerItem().setText(0,"绘图项")
         self.commandLinkButton.setText("开始绘图")
         self.action123.setText("123")
-
