@@ -12,7 +12,6 @@ import pandas as pd
 import tushare as ts
 import cPickle
 import numpy as np
-import json
 import warnings
 warnings.filterwarnings("ignore")
 list1 = []
@@ -102,8 +101,6 @@ class MyUi(QMainWindow):
         local_url = QUrl.fromLocalFile(file_path)
         self.ui.webView.load(local_url)
         #self.ui.commandLinkButton.setFixedSize(50, 50)
-
-
         self.ui.search_btn.clicked.connect(lambda: self.search_comp(series))
         self.ui.init_code_btn.clicked.connect(lambda: self.code_sort_tree(series))
         self.ui.init_category_btn.clicked.connect(lambda: self.init_treeWidget(list1, series))
@@ -190,6 +187,8 @@ class MyUi(QMainWindow):
             self.ui.comboBox.clear()
             self.ui.comboBox.addItems(["hfq", "qfq"])
             self.ui.treeWidget_2.clear()
+
+
         if self.ui.combobox.currentText()==u"K线":
             self.ui.label_2.show()
             self.ui.dateEdit_2.show()
@@ -323,7 +322,7 @@ class MyUi(QMainWindow):
             #item.delete
 
     def classify(self, folder):
-        items = []
+
         startdate = self.ui.dateEdit.date()
         startdate = startdate.toPyDate()
         startdate = startdate.strftime("%Y/%m/%d")#converts date from dateedit to tushare readable date
@@ -337,14 +336,15 @@ class MyUi(QMainWindow):
             #return
         root = self.ui.treeWidget_2.invisibleRootItem()# This is for iterating child items
         child_count = root.childCount()
+        texts = []
         if child_count==0:
             return
         for i in range(child_count):
             item = root.child(i)
-            text = item.text(0)#'stock_name'+'-' +action
-            items.append(text)
-        labels = [k for k in items]
-        items = ([x.encode("utf-8") for x in labels])
+            text = item.text(0)#with 3 part'stock_name'+'-'+'code'+'-'+action
+            texts.append(text)
+        labels = [k for k in texts]
+        #items = ([x.encode("utf-8") for x in labels])
         width = self.ui.webView.width()#give width and height of user's screen so that graphs can be generated with dynamic size
         height = self.ui.webView.height()
         graphpage(labels, startdate,enddate,option,width, height)#labels:复权ork线or分笔 option:hfq, qfq or 15, 30, D, etc
