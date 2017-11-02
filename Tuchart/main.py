@@ -12,7 +12,6 @@ import pandas as pd
 import tushare as ts
 import cPickle
 import numpy as np
-import json
 import warnings
 warnings.filterwarnings("ignore")
 list1 = []
@@ -34,7 +33,7 @@ class MyUi(QMainWindow):
                     #cPickle.dump(datetime.now(),infile)
 
             else:
-                print("More than 12 hours. Updating pickle...")
+                print("More than 12 hours. Updating Pickle...")
                 data = ts.get_industry_classified()
                 with open("class","w+") as outfile:
                     cPickle.dump(data,outfile)
@@ -43,7 +42,7 @@ class MyUi(QMainWindow):
                     cPickle.dump(now, outfile)
 
         else:
-            print("No pickle found!") #If this is first time using tuchart in this directory
+            print("No Pickle found!") #If this is first time using tuchart in this directory
             data = df()
             data = ts.get_industry_classified()
             with open('class', 'w+') as outfile: #records pickle
@@ -97,13 +96,11 @@ class MyUi(QMainWindow):
         self.ui.treeWidget.setContextMenuPolicy(Qt.CustomContextMenu)
         self.ui.treeWidget.customContextMenuRequested.connect(self.openMenu)
 
-        #self.ui.widget.setGeometry(QtCore.QRect(0, 30,1550, 861))
+        #self.ui.webView.setGeometry(QtCore.QRect(0, 30,1550, 861))
         file_path = os.path.abspath(os.path.join(os.path.dirname(__file__), "render.html")) #path to read html file
         local_url = QUrl.fromLocalFile(file_path)
-        self.ui.widget.load(local_url)
+        self.ui.webView.load(local_url)
         #self.ui.commandLinkButton.setFixedSize(50, 50)
-
-
         self.ui.search_btn.clicked.connect(lambda: self.search_comp(series))
         self.ui.init_code_btn.clicked.connect(lambda: self.code_sort_tree(series))
         self.ui.init_category_btn.clicked.connect(lambda: self.init_treeWidget(list1, series))
@@ -190,6 +187,8 @@ class MyUi(QMainWindow):
             self.ui.comboBox.clear()
             self.ui.comboBox.addItems(["hfq", "qfq"])
             self.ui.treeWidget_2.clear()
+
+
         if self.ui.combobox.currentText()==u"K线":
             self.ui.label_2.show()
             self.ui.dateEdit_2.show()
@@ -218,121 +217,6 @@ class MyUi(QMainWindow):
             self.ui.label_2.hide()
             self.ui.dateEdit_2.hide()
             self.ui.treeWidget_2.clear()
-
-    def graphmerge(self, combineKeyword):
-        sth = ""
-        for i in combineKeyword:
-            if sth == "":
-                sth = sth + i
-            else :
-                sth = sth + "\n" + "&"+ "-"+i
-        list1 = sth
-        return sth
-        global CombineKeyword
-        CombineKeyword = []
-        self.ui.listwidget.clear()  #combine stuff so that different graphs can be drawn together
-
-    def kstuff(self):
-        return 0
-
-
-    def openWidgetMenu(self,position):
-        indexes = self.ui.treeWidget_2.selectedIndexes()
-        item = self.ui.treeWidget_2.itemAt(position)
-        if item == None:
-            return
-        #item = self.ui.listWidget.itemAt(position)
-        if len(indexes) > 0:
-            menu = QMenu()
-            menu.addAction(QAction("Delete", menu,checkable = True))#This function is perhaps useless
-            #menu.triggered.connect(self.eraseItem)
-            item = self.ui.treeWidget_2.itemAt(position)
-            #collec = str(item.text())
-            menu.triggered.connect(lambda action: self.ListMethodSelected(action, item))
-        menu.exec_(self.ui.treeWidget_2.viewport().mapToGlobal(position))
-
-
-    def ListMethodSelected(self, action, item):
-        if action.text() == "Delete":
-            self.eraseItem()
-        if action.text() == "Combine":
-            global CombineKeyword
-            collec = str(item.text())
-            CombineKeyword.append(collec)#Useless function(maybe?)
-            list1 = [self.tr(collec)]
-            self.ui.listwidget.addItems(list1)
-            self.eraseItem()
-
-
-    def methodSelected(self, action, collec):
-        #print(action.text()) #Choice
-        #if (self.ui.treewidget.count() == 5):
-         #   self.ui.label.setText("Maximum number of queries")
-         #   return
-        #self.ui.label.setText("")
-        Choice = action.text()
-        Stock = collec
-        #print(collec)  #Stock Name
-        #print(db_origin)  #DataBase name
-        #list1 = [self.tr(Stock+"-"+Choice+"-"+db_origin)]
-        #self.ui.treewidget.addItems(list1)
-        parent = QTreeWidgetItem(self.ui.treeWidget_2)
-        parent.setText(0, Stock.decode("utf-8")+"-"+Choice)
-        font = QtGui.QFont("Times", 12, QtGui.QFont.Bold)
-        self.ui.treeWidget_2.setFont(font)
-
-    def eraseItem(self):
-        for x in self.ui.treeWidget_2.selectedItems():#delete with write click menu
-            #item = self.ui.treewidget.takeItem(self.ui.treewidget.currentRow())
-            sip.delete(x)
-            #item.delete
-
-    def classify(self, folder):
-        items = []
-        startdate = self.ui.dateEdit.date()
-        startdate = startdate.toPyDate()
-        startdate = startdate.strftime("%Y/%m/%d")#converts date from dateedit to tushare readable date
-        enddate = self.ui.dateEdit_2.date()
-        enddate = enddate.toPyDate()
-        enddate = enddate.strftime("%Y/%m/%d")
-        option = self.ui.comboBox.currentText()
-        option = str(option)
-        #if (self.ui.treewidget) == 0:
-            #self.ui.label.setText("Need to select at least one query")
-            #return
-        root = self.ui.treeWidget_2.invisibleRootItem()# This is for iterating child items
-        child_count = root.childCount()
-        if child_count==0:
-            return
-        for i in range(child_count):
-            if root.child(i).child(0):
-                array = []
-                temp = root.child(i)
-                #mergelist = self.recurse(temp,array)
-                #print(mergelist)
-                parent = root.child(i).text(0)
-                mergelist = []
-                for j in range(temp.childCount()):
-                    while temp.child(j).childCount()!=0:
-                        #self.ui.label.setText("Error: Invalid Tree!")
-                        return
-                    txt = temp.child(j).text(0)
-                    mergelist.append(txt)
-                mergelist.insert(0,parent)
-                url = self.graphmerge(mergelist)
-                items.append(url)
-            else:
-                item = root.child(i)
-                url = item.text(0)
-                items.append(url)
-        labels = [k for k in items]
-        items = ([x.encode("utf-8") for x in labels])
-        width = self.ui.widget.width()#give width and height of user's screen so that graphs can be generated with dynamic size
-        height = self.ui.widget.height()
-        graphpage(labels, startdate,enddate,option,width, height)#labels:复权ork线or分笔 option:hfq, qfq or 15, 30, D, etc
-        self.ui.widget.reload()#refreshes webengine
-        self.ui.widget.repaint()
-        self.ui.widget.update()
 
     def openMenu(self,position):
         indexes = self.ui.treeWidget.selectedIndexes()
@@ -388,6 +272,99 @@ class MyUi(QMainWindow):
                 #menu.addAction(QAction(g, menu, checkable=True))
         menu.triggered.connect(lambda action: self.methodSelected(action, collec))
         menu.exec_(self.ui.treeWidget.viewport().mapToGlobal(position))
+
+    def methodSelected(self, action, collec):
+        # print(action.text()) #Choice
+        # if (self.ui.treewidget.count() == 5):
+        #   self.ui.label.setText("Maximum number of queries")
+        #   return
+        # self.ui.label.setText("")
+        Choice = action.text()
+        Stock = collec
+        # print(collec)  #Stock Name
+        # print(db_origin)  #DataBase name
+        # list1 = [self.tr(Stock+"-"+Choice+"-"+db_origin)]
+        # self.ui.treewidget.addItems(list1)
+        parent = QTreeWidgetItem(self.ui.treeWidget_2)
+        parent.setText(0, Stock.decode("utf-8") + "-" + Choice)
+
+
+    def openWidgetMenu(self,position):
+        indexes = self.ui.treeWidget_2.selectedIndexes()
+        item = self.ui.treeWidget_2.itemAt(position)
+        if item == None:
+            return
+        #item = self.ui.listWidget.itemAt(position)
+        if len(indexes) > 0:
+            menu = QMenu()
+            menu.addAction(QAction("Delete", menu,checkable = True))#This function is perhaps useless
+            #menu.triggered.connect(self.eraseItem)
+            item = self.ui.treeWidget_2.itemAt(position)
+            #collec = str(item.text())
+            menu.triggered.connect(lambda action: self.ListMethodSelected(action, item))
+        menu.exec_(self.ui.treeWidget_2.viewport().mapToGlobal(position))
+
+    def ListMethodSelected(self, action, item):
+        if action.text() == "Delete":
+            self.eraseItem()
+        if action.text() == "Combine":
+            global CombineKeyword
+            collec = str(item.text())
+            CombineKeyword.append(collec)#Useless function(maybe?)
+            list1 = [self.tr(collec)]
+            self.ui.listwidget.addItems(list1)
+            self.eraseItem()
+
+    def eraseItem(self):
+        for x in self.ui.treeWidget_2.selectedItems():#delete with write click menu
+            #item = self.ui.treewidget.takeItem(self.ui.treewidget.currentRow())
+            sip.delete(x)
+            #item.delete
+
+    def classify(self, folder):
+
+        startdate = self.ui.dateEdit.date()
+        startdate = startdate.toPyDate()
+        startdate = startdate.strftime("%Y/%m/%d")#converts date from dateedit to tushare readable date
+        enddate = self.ui.dateEdit_2.date()
+        enddate = enddate.toPyDate()
+        enddate = enddate.strftime("%Y/%m/%d")
+        option = self.ui.comboBox.currentText()
+        option = str(option)
+        #if (self.ui.treewidget) == 0:
+            #self.ui.label.setText("Need to select at least one query")
+            #return
+        root = self.ui.treeWidget_2.invisibleRootItem()# This is for iterating child items
+        child_count = root.childCount()
+        texts = []
+        if child_count==0:
+            return
+        for i in range(child_count):
+            item = root.child(i)
+            text = item.text(0)#with 3 part'stock_name'+'-'+'code'+'-'+action
+            texts.append(text)
+        labels = [k for k in texts]
+        #items = ([x.encode("utf-8") for x in labels])
+        width = self.ui.webView.width()#give width and height of user's screen so that graphs can be generated with dynamic size
+        height = self.ui.webView.height()
+        graphpage(labels, startdate,enddate,option,width, height)#labels:复权ork线or分笔 option:hfq, qfq or 15, 30, D, etc
+        self.ui.webView.reload()#refreshes webengine
+        self.ui.webView.repaint()
+        self.ui.webView.update()
+
+    def graphmerge(self, combineKeyword):
+        sth = ""
+        for i in combineKeyword:
+            if sth == "":
+                sth = sth + i
+            else :
+                sth = sth + "\n" + "&"+ "-"+i
+        list1 = sth
+        return sth
+        global CombineKeyword
+        CombineKeyword = []
+        self.ui.listwidget.clear()  #combine stuff so that different graphs can be drawn together
+
 
 app = QApplication(sys.argv)
 w = MyUi()
