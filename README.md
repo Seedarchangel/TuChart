@@ -129,7 +129,6 @@ Tuchart目前支持的数据类型有：
 
 ## 联系作者
 * 邮箱：rzli2@illinois.edu
-* 微信：seedarchangel
 
 
 
