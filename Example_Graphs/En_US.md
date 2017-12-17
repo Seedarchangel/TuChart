@@ -80,5 +80,3 @@ High frequency data is calculated from tick data of your chosen day. Algorithm: 
 ## Contact:
 Email: rzli2@illinois.edu
 
-Wechat: seedarchangel
-
