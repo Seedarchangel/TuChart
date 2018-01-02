@@ -44,7 +44,7 @@ tuchart在您电脑具体的目录路径可以使用```pip show tuchart```指令
 
 
 ## 依赖
-请安装anaconda 2.7,并另外安装
+请安装anaconda 2.7或者3.6,并另外安装
 
 1. pyecharts==0.2.0
 2. tushare
@@ -57,7 +57,11 @@ tuchart在您电脑具体的目录路径可以使用```pip show tuchart```指令
 ```pip install pyecharts==0.2.0```
 
 
-即可安装
+即可安装.
+
+python 3版本由@cansijyun提供，目前还未测试，可以在github下载后从Tuchart3.0 -beta文件夹运行，和2.7版本一样在文件夹下运行
+
+```python main.py```即可
 
 
 ## 数据类型
@@ -130,6 +134,10 @@ Tuchart目前支持的数据类型有：
 ## 联系作者
 * 邮箱：rzli2@illinois.edu
 
+## Contributers
+Special thanks to
+* cansijyu（python3 版本，ui优化和搜索功能）
+* cclauss
 
 
 
