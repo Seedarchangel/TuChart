@@ -47,7 +47,7 @@ tuchart在您电脑具体的目录路径可以使用```pip show tuchart```指令
 请安装anaconda 2.7或者3.6,并另外安装
 
 1. pyecharts==0.2.0
-2. tushare
+2. tushare==0.8.6（更高版本会导致崩溃）
 3. qtpy
 
 使用```pip install tushare, qtpy```
