@@ -31,7 +31,8 @@ def graphpage(items,startdate,enddate,option,width1, height1): #labels:复权ork
             a = generateline(j[1],j[2],startdate,enddate,option)#stock number, Type, startdate, enddate, 30 or 15 or days
             if a is None:
                 continue
-            time = [d[0] for d in a]#get time from returned dictionary
+            # time = [d[0] for d in a]#get time from returned dictionary
+            time, open, close, low, high = zip(*a)#get time from returned dictionary
             if j[2]!="Kline":
 
                 if len(a[0])==4 and a[0][2]=="bar": #for 分笔data
@@ -88,8 +89,8 @@ def graphpage(items,startdate,enddate,option,width1, height1): #labels:复权ork
                     page.add(line)
             else:
                 overlap = Overlap()#for k线
-                close = zip(*a)[2]
-                candle = [[x[1], x[2], x[3], x[4]] for x in a]
+                # close = zip(*a)[2]
+                candle = [open, close, low, high]
                 candlestick = Kline(j[0] + "-" + j[2], width=width1*10/11, height = (height1*10/11) / len(items))
                 candlestick.add(j[0], time, candle, is_datazoom_show=True, datazoom_type="slider",yaxis_interval = 1)
                 overlap.add(candlestick)
