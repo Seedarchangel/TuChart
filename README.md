@@ -50,7 +50,7 @@ tuchart在您电脑具体的目录路径可以使用```pip show tuchart```指令
 2. tushare==0.8.6（更高版本会导致崩溃）
 3. qtpy
 
-使用```pip install tushare, qtpy```
+使用```pip install tushare==0.8.6, qtpy```
 
 以及
 
