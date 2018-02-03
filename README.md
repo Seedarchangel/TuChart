@@ -141,7 +141,7 @@ Tuchart目前支持的数据类型有：
 Special thanks to
 * cansijyu（python3 版本，ui优化和搜索功能）
 * cclauss
-
+* 979323
 
 
 
