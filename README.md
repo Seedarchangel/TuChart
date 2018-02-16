@@ -2,7 +2,7 @@ TuChart
 =================
 TuChart is a visualization tool for the Chinese stock market, based on Tushare and Echarts.
 
-[Chinese doc](https://github.com/Seedarchangel/TuChart/blob/master/Example_Graphs/En_US.md)
+[中文文档](https://github.com/Seedarchangel/TuChart/blob/master/Example_Graphs/En_US.md)
 
 ## Usage Examples
 #### Candlestick Charts
