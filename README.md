@@ -4,26 +4,28 @@ TuChart is a visualization tool for the Chinese stock market, based on Tushare a
 
 [中文文档](https://github.com/Seedarchangel/TuChart/blob/master/Example_Graphs/En_US.md)
 
-## Usage Examples
+## Examples
 #### Candlestick Charts
 ![notebook-0](https://github.com/Seedarchangel/TuChart/blob/master/Example_Graphs/Screen%20Shot%202017-08-29%20at%203.30.19%20PM.png?raw=true)
 #### Tick Charts
 ![notebook-0](https://github.com/Seedarchangel/TuChart/blob/master/Example_Graphs/Screen%20Shot%202017-08-29%20at%202.12.53%20AM.png)
 #### Major Shareholders
 ![notebook-0](https://github.com/Seedarchangel/TuChart/blob/master/Example_Graphs/New_Top_10.gif?raw=true)
-#### Drag and Zoom
+#### Supports dragging and zooming
 ![notebook-0](https://github.com/Seedarchangel/TuChart/blob/master/Example_Graphs/sample.gif)
 
-## How to Use
-First, install dependencies
+## Setup Instructions
+Install all necessary dependencies
 
-```pip install tushare, pyecharts==0.2.0```
+```pip install pyecharts==0.2.0```
+
+```pip install tushare==0.8.6```
 
 To install Tuchart, enter
 ```pip install tuchart```
 in your terminal
 
-#### Notice：For best plotting experience，please download the latest version = 0.1.2.5
+#### Notice：For best plotting experience，please download the latest version = 0.1.2.7
 
 then, under your tuchart directory, e.g:
 
@@ -31,15 +33,15 @@ then, under your tuchart directory, e.g:
 
 run```python main.py```
 
-The exact path of tuchart in your directory can be located by```pip show tuchart```which will return its location:
+The exact path of tuchart in your directory can be located by```pip show tuchart```:
 ![notebook-0](https://github.com/Seedarchangel/TuChart/blob/master/Example_Graphs/tuchart_path.png)
 add```/tuchart```to pinpoint the tuchart directory.
 
-Right click to choose the name of stock and type of data you would like to plot. Then, press the green arrow button to plot. Due to the constraints of size, it is recommended to plot fewer than 5 graphs at the same time.
+Right click to choose the name of stock and type of data you would like to plot. Then, press the green arrow button to plot. Due to the size constraints, it is recommended to plot fewer than 5 graphs at the same time.
 
 ![Manual](https://github.com/Seedarchangel/TuChart/blob/master/Example_Graphs/SLYJiZEBeD.gif)
 
-## Supported Datatypes
+## Tuchart Currently Supports:
 * Raw Stock Data
   * Daily average
   * Weekly average
