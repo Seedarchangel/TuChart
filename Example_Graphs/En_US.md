@@ -1,6 +1,9 @@
-TuChart
+TuChart [![Downloads](http://pepy.tech/badge/tuchart)](http://pepy.tech/project/tuchart)
 =================
+
+
 [English Doc](https://github.com/Seedarchangel/TuChart/blob/master/Example_Graphs/En_US.md)
+
 
 TuChart是一个基于Echarts和Tushare的股票视觉化应用
 ## 使用截图
@@ -130,9 +133,10 @@ Tuchart目前支持的数据类型有：
 
 
 
-欢迎提交Issues。下个版本将加入
+欢迎提交Issues。下个版本(2018年8月底)将加入
 * 数字货币，包括比特币，莱特币等
 
+不要停下来啊！（指更新）
 
 ## 联系作者
 * 邮箱：rzli2@illinois.edu
