@@ -1,4 +1,4 @@
-TuChart
+TuChart [![Downloads](http://pepy.tech/badge/tuchart)](http://pepy.tech/project/tuchart)
 =================
 TuChart is a visualization tool for the Chinese stock market, based on Tushare and Echarts.
 
