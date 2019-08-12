@@ -90,7 +90,7 @@ def graphpage(labels,mode_combo,startdate,enddate,optInterval,width1, height1):
                 if label1[2] == 'Open':
                     list_aft = array['open'].tolist()
                 elif label1[2] == 'Close':
-                    list_aft = close
+                    list_aft = array['close'].tolist()
                 elif label1[2] == 'High':
                     list_aft = array['high'].tolist()
                 elif label1[2] == 'Low':
