@@ -32,9 +32,21 @@ def graphpage(labels,mode_combo,startdate,enddate,optInterval,width1, height1):
             elif mode_combo == "K线":
             #elif optInterval.isalnum() :#历史K线
                 array = ts.get_k_data(label1[1], start=startdate, end=enddate, ktype=optInterval)
+                if array.empty:
+                    print('array empty')
+                    exit()
+                #TODO: problem: array might be empty(i.e. when checking current date), check if array is empty
+
                 time = array['date'].tolist()  # array.date
             elif mode_combo == "历史分钟":
                 array_bfr = ts.get_tick_data(label1[1], date=startdate)
+
+                #TODO: array_bfr might be empty
+
+                if not array_bfr or not array_bfr.size:
+                    print('array_brf empty')
+                    exit()
+
                 array_bfr.sort_values("time")
                 a = startdate + " " + array_bfr["time"]
                 array_bfr["time"] = a
@@ -87,6 +99,11 @@ def graphpage(labels,mode_combo,startdate,enddate,optInterval,width1, height1):
 
                 page.add(overlap)
             else:#When label1[2]==open/close/volume
+                # TODO: array might be empty
+                if array.empty:
+                    print('empty array')
+                    exit()
+
                 if label1[2] == 'Open':
                     list_aft = array['open'].tolist()
                 elif label1[2] == 'Close':
@@ -108,7 +125,12 @@ def graphpage(labels,mode_combo,startdate,enddate,optInterval,width1, height1):
 
 
         elif label1[2]=="分笔":
-            array = ts.get_tick_data(label1[1], date=startdate)
+            array = ts.get_tick_data(label1[1], date=startdate, src='tt')
+            #TODO: array might be empty
+            if not array or not array.size:
+                print('array empty')
+                exit()
+
             array = array.sort_values("time")
             date = array["time"].tolist()
             amount = array["amount"].tolist()
@@ -167,6 +189,14 @@ def graphpage(labels,mode_combo,startdate,enddate,optInterval,width1, height1):
             namearray = [c[0] for c in returnarray]
             valuearray = [d[1] for d in returnarray]
             quarter = [e[2] for e in returnarray]
+
+            #TODO: returnarray might be empty
+            print(returnarray)
+            if not returnarray or not returnarray.size:
+                print("returnarray empty")
+                exit()
+
+
             num = returnarray[0][4]
 
             for x in range(0, int(num / 10)):
