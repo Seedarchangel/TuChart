@@ -14,6 +14,8 @@ import re
 def graphpage(labels,mode_combo,startdate,enddate,optInterval,width1, height1):
     #optInterval='D/W/M' labels
 
+    render = True
+
     startdate = startdate.replace("/","-")#convert to tushare readable date
     enddate = enddate.replace("/","-")
 
@@ -34,18 +36,25 @@ def graphpage(labels,mode_combo,startdate,enddate,optInterval,width1, height1):
                 array = ts.get_k_data(label1[1], start=startdate, end=enddate, ktype=optInterval)
                 if array.empty:
                     print('array empty')
-                    exit()
+                    render = False
+                    break
                 #TODO: problem: array might be empty(i.e. when checking current date), check if array is empty
 
                 time = array['date'].tolist()  # array.date
             elif mode_combo == "历史分钟":
-                array_bfr = ts.get_tick_data(label1[1], date=startdate)
+                array_bfr = ts.get_tick_data(label1[1], date=startdate, src='tt')
 
-                #TODO: array_bfr might be empty
+                #TODO: array_bfr might be empty, cannot get 历史分钟
 
-                if not array_bfr or not array_bfr.size:
-                    print('array_brf empty')
-                    exit()
+                try:
+                    if array_bfr.empty:
+                        print('array_brf empty')
+                        render = False
+                        break
+                except AttributeError:
+                    print('array_brf is None')
+                    render = False
+                    break
 
                 array_bfr.sort_values("time")
                 a = startdate + " " + array_bfr["time"]
@@ -102,7 +111,8 @@ def graphpage(labels,mode_combo,startdate,enddate,optInterval,width1, height1):
                 # TODO: array might be empty
                 if array.empty:
                     print('empty array')
-                    exit()
+                    render = False
+                    break
 
                 if label1[2] == 'Open':
                     list_aft = array['open'].tolist()
@@ -127,9 +137,16 @@ def graphpage(labels,mode_combo,startdate,enddate,optInterval,width1, height1):
         elif label1[2]=="分笔":
             array = ts.get_tick_data(label1[1], date=startdate, src='tt')
             #TODO: array might be empty
-            if not array or not array.size:
-                print('array empty')
-                exit()
+            try:
+                if not array.size:
+                    print('array empty')
+                    render = False
+                    break
+            except AttributeError:
+                print('array is none')
+                render = False
+                break
+
 
             array = array.sort_values("time")
             date = array["time"].tolist()
@@ -192,9 +209,10 @@ def graphpage(labels,mode_combo,startdate,enddate,optInterval,width1, height1):
 
             #TODO: returnarray might be empty
             print(returnarray)
-            if not returnarray or not returnarray.size:
+            if not returnarray:
                 print("returnarray empty")
-                exit()
+                render = False
+                break
 
 
             num = returnarray[0][4]
@@ -215,7 +233,9 @@ def graphpage(labels,mode_combo,startdate,enddate,optInterval,width1, height1):
                 # namearray = [y for y in namearray[x]]
             timeline.render()
 
-    page.render()
+    if render:
+        page.render()
+    # TODO: add else: clean the current display
 
 def calculateMa(date, Daycount):
     sum = 0

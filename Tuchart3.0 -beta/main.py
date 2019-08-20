@@ -353,7 +353,8 @@ class MyUi(QMainWindow):
         width = self.ui.webView.width()#give width and height of user's screen so that graphs can be generated with dynamic size
         height = self.ui.webView.height()
         mode_combo = self.ui.combobox.currentText()
-        graphpage(labels,mode_combo, startdate,enddate,option,width, height)#labels:复权ork线or分笔 option:hfq, qfq or 15, 30, D, etc
+        graphpage(labels,mode_combo, startdate, enddate, option, width, height)#labels:复权ork线or分笔 option:hfq, qfq or 15, 30, D, etc
+
         self.ui.webView.reload()#refreshes webengine
         self.ui.webView.repaint()
         self.ui.webView.update()
@@ -367,6 +368,8 @@ class MyUi(QMainWindow):
                 sth = sth + "\n" + "&"+ "-"+i
         list1 = sth
         return sth
+
+        # TODO: unreachable code here
         global CombineKeyword
         CombineKeyword = []
         self.ui.listwidget.clear()  #combine stuff so that different graphs can be drawn together
