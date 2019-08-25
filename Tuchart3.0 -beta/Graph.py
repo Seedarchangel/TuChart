@@ -204,7 +204,6 @@ def graphpage(labels, mode_combo, startdate, enddate, optInterval, width1, heigh
             valuearray = [d[1] for d in returnarray]
             quarter = [e[2] for e in returnarray]
 
-            print(returnarray)
             if not returnarray:
                 print("No data")
                 render = False

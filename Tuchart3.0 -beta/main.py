@@ -354,23 +354,6 @@ class MyUi(QMainWindow):
         height = self.ui.webView.height()
         mode_combo = self.ui.combobox.currentText()
 
-        #TODO: debug here
-
-        print('labels')
-        print(labels)
-        print('mode combo')
-        print(mode_combo)
-        print('startdate')
-        print(startdate)
-        print('enddate')
-        print(enddate)
-        print('option')
-        print(option)
-        print('w')
-        print(width)
-        print('h')
-        print(height)
-
         graphpage(labels, mode_combo, startdate, enddate, option, width, height)#labels:复权ork线or分笔 option:hfq, qfq or 15, 30, D, etc
 
         self.ui.webView.reload() #refreshes webengine
