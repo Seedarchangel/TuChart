@@ -232,6 +232,7 @@ def graphpage(labels, mode_combo, startdate, enddate, optInterval, width1, heigh
         page.render()
     # TODO: add else: clean the current display
 
+
 def calculateMa(date, Daycount):
     sum = 0
     result = list(0 for x in date)  # used to calculate ma. Might be deprecated for future versions
@@ -244,5 +245,3 @@ def calculateMa(date, Daycount):
         round(result[i], 3)
         result[i] =round(sum / Daycount,3)
     return result
-
-

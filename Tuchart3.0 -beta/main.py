@@ -373,7 +373,7 @@ class MyUi(QMainWindow):
 
         graphpage(labels, mode_combo, startdate, enddate, option, width, height)#labels:复权ork线or分笔 option:hfq, qfq or 15, 30, D, etc
 
-        self.ui.webView.reload()#refreshes webengine
+        self.ui.webView.reload() #refreshes webengine
         self.ui.webView.repaint()
         self.ui.webView.update()
 
@@ -388,9 +388,9 @@ class MyUi(QMainWindow):
         return sth
 
         # TODO: unreachable code here
-        global CombineKeyword
-        CombineKeyword = []
-        self.ui.listwidget.clear()  #combine stuff so that different graphs can be drawn together
+        # global CombineKeyword
+        # CombineKeyword = []
+        # self.ui.listwidget.clear()  #combine stuff so that different graphs can be drawn together
 
 app = QApplication(sys.argv)
 w = MyUi()
